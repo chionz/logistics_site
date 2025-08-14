@@ -1,11 +1,11 @@
-# OptiCheck
-OptiCheck Health App
+# Logistics
+Logistics Health App
 
 ## Setup
 
 **Cloning**
-- clone the repository using `git clone https://github.com/chionz/opticheck.git`
-- `cd` into the directory `opticheck`
+- clone the repository using `git clone https://github.com/chionz/logistics_site.git`
+- `cd` into the directory `Logistics`
 - switch branch using `git checkout backend`
 
 1. Create a virtual environment.
@@ -117,5 +117,5 @@ then, run this again.
 please make sure to test your endpoint or model before pushing.
 push your alembic migrations.
 
-# OptiCheck
+# Logistics
 

@@ -9,19 +9,15 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, HTMLResponse
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, status
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
-from starlette.middleware.sessions import SessionMiddleware  # required by google oauth
+from starlette.middleware.sessions import SessionMiddleware  
 
 from api.utils.json_response import JsonResponseDict
 from api.utils.logger import logger
 from api.v1.routes import api_version_one
 from api.utils.settings import settings
 
-import subprocess
-from alembic.config import Config
-from alembic import command
 from api.db.database import create_database
 
 #views Dependencies
@@ -31,48 +27,17 @@ from api.utils.config import templates_env
 from api.db.database import get_db as db
 from api.v1.services.user import user_service
 
+
+# Set up email templates and css static files
+email_templates = Jinja2Templates(directory='api/core/dependencies/email/templates')
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     #run_migrations()
     #create_database()
     yield
 
-
 app = FastAPI(lifespan=lifespan)
-add_pagination(app)
-
-
-def run_migrations():
-    # Load Alembic configuration from alembic.ini
-    alembic_cfg = Config("alembic.ini")
-    
-    # Run migrations
-    try:
-        command.upgrade(alembic_cfg, "head")
-        print("Alembic migration applied successfully.")
-    except Exception as e:
-        print(f"Error running Alembic migration: {e}")
-
-
-# Set up email templates and css static files
-email_templates = Jinja2Templates(directory='api/core/dependencies/email/templates')
-
-
-MEDIA_DIR = '/tmp/media'
-try:
-    if not os.path.exists(MEDIA_DIR):
-        os.makedirs(MEDIA_DIR)
-except Exception as e:
-    print(f"Error creating media directory: {e}")
-    pass  # Ignore the error and continue
-
-# Mount the media directory to serve static files
-try:
-    app.mount('/media', StaticFiles(directory=MEDIA_DIR), name='media')
-except Exception as e:
-    print(f"Error mounting media directory: {e}")
-    pass  # Ignore the error and continue
-
 
 origins = [
    "*"
@@ -90,16 +55,30 @@ app.add_middleware(
 
 app.include_router(api_version_one)
 
-@app.get("/", tags=["Api Home"])
+@app.get("/health", tags=["API Health"])
 async def get_root(request: Request) -> dict:
     return JsonResponseDict(
-        message="Welcome to OptiCheck API", status_code=status.HTTP_200_OK, data={"URL": ""}
+        message="Welcome to Logistics API", status_code=status.HTTP_200_OK, data={"URL": ""}
     )
 
 
-@app.get("/probe", tags=["Home"])
-async def probe():
-    return {"message": "I am the Python FastAPI API responding"}
+# Root View
+@app.get("/", response_class=HTMLResponse, tags=["Home"])
+def index(request: Request):
+    """main page"""
+    try:
+        user_id = user_service.fetch_user_refresh_token(request, db=db)
+        isLogin = True if user_id else False
+    except HTTPException as e:
+        if e.status_code == 401:
+            isLogin = False
+        else:
+            raise e 
+    template = templates_env.get_template("index.html")
+    return template.render({"request": request, "title": "Cartty Logistics", "isLogin": isLogin, "templates_env": templates_env})
+
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 # REGISTER EXCEPTION HANDLERS

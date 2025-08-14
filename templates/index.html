@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ZXX">
+
+<!-- Mirrored from quomodothemes.website/html/inflanar/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 23:26:30 GMT -->
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="#">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Site Title -->
+	<title>{{title}}</title>
+
+	<!-- Fav Icon -->
+	<link rel="icon" href="/static/img/favicon.png">
+
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap"
+		rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<!-- Jquery UI CSS -->
+	<link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="/static/css/animate.min.css">
+	<!-- AOS CSS -->
+	<link rel="stylesheet" href="/static/css/aos.min.css">
+	<!-- Fontawesome -->
+	<link rel="stylesheet" href="/static/css/font-awesome-all.min.css">
+	<!-- Swiper Slider CSS -->
+	<link rel="stylesheet" href="/static/css/swiper-slider.min.css">
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/static/css/select2-min.css">
+	<!-- Data Tables -->
+	<link rel="stylesheet" href="/static/css/datatables.min.css">
+	<!-- Video Popup -->
+	<link rel="stylesheet" href="/static/css/video-popup.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/static/css/theme-default.css">
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/css/agency.css">
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QKXTXRPRTV"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-QKXTXRPRTV');
+	</script>
+</head>
+
+<body>
+	<!-- Start Header Section-->
+	<div id="header">
+		{{templates_env.get_template("header.html").render({"isLogin": isLogin})}}
+	</div>
+
+	<!--JS to call Footer Templates-->
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+
+			fetch("/static/footer.html")
+				.then(response => response.text())
+				.then(data => {
+					document.getElementById("footer").innerHTML = data;
+				});
+		});
+	</script>
+
+
+	<!-- inflanar Hero -->
+	<section id="hero" class="inflanar-hero inflanar-bg-cover p-relative inflanar-ohidden">
+		<div class="inflanar-hero-shape">
+			<!-- <img src="/static/img/in-hero-shape.svg"> -->
+		</div>
+		<div class="inflanar-hero-shape"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="inflanar-hero__inside" style="min-height: 800px;">
+						<div class="inflanar-hero__inner">
+							<!-- Hero Content -->
+							<div class="inflanar-hero__content" data-aos="fade-up" data-aos-delay="300">
+								<span class="inflanar-hero__sub inflanar-regular-font"
+									style="text-align: center;">Premium Level Marketing.</span>
+								<h1 class="inflanar-hero__title"
+									style="font-family: sans-serif; font-size: 50px; text-align: center;">
+									We act. You win.</h1>
+								<!-- 								<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">Web3 Tasks. <span>Real Proofs.</span> Clean Payouts.</h1> -->
+								<span class="inflanar-hero__sub inflanar-regular-font"
+									style="text-align: center; display: block; max-width: 600px; margin: 0 auto;">
+									Scrap3 Team is an integrated Web3 marketing agency built
+									to move charts
+									and drive real revenue.</span>
+							</div>
+							<div class="inflanar-header__button"
+								style="display: flex; justify-content: center; margin-top: 50px;" >
+								<a href="/register" class="inflanar-btn inflanar-btn--header agency-color"><span>Get a Free
+										Proposal</span></a>
+								<!-- <a href="/login" class="inflanar-btn inflanar-btn__nbg">Login</a> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- End inflanar Hero -->
+
+	<!-- Funfacts 1 -->
+	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 col-12">
+					<div class="funfacts-scroll-wrapper">
+						<div class="funfacts-scroll" style="animation: scroll-left 5s linear infinite;">
+							<div class="funfacts__card funfacts__card--gr1 fun-size">
+								<div class="funfacts__icon">
+									<img src="/static/img/youtube-icon.svg">
+								</div>
+								<div class="funfacts__number">
+									<h4 class="funfacts__title"><b class="in-counter">7</b><b>K+
+										</b><span>Subscribers</span></h4>
+								</div>
+							</div>
+
+							<div class="funfacts__card funfacts__card--gr2 fun-size">
+								<div class="funfacts__icon">
+									<img src="/static/img/twitter-icon.svg">
+								</div>
+								<div class="funfacts__number">
+									<h4 class="funfacts__title"><b class="in-counter">5</b><b>K+
+										</b><span>Followers</span></h4>
+								</div>
+							</div>
+
+							<div class="funfacts__card funfacts__card--gr1 fun-size">
+								<div class="funfacts__icon">
+									<img src="/static/img/tiktok-icon.svg">
+								</div>
+								<div class="funfacts__number">
+									<h4 class="funfacts__title"><b class="in-counter">3</b><b>K+
+										</b><span>Followers</span></h4>
+								</div>
+							</div>
+
+							<div class="funfacts__card funfacts__card--gr2 fun-size">
+								<div class="funfacts__icon">
+									<img src="/static/img/instagram-icon.svg">
+								</div>
+								<div class="funfacts__number">
+									<h4 class="funfacts__title"><b class="in-counter">2</b><b>K+
+										</b><span>Followers</span></h4>
+								</div>
+							</div>
+						</div>
+					</div> <!-- end wrapper -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- We we operate -->
+	<div class="inflanar-hero__content ag-margin-carousol">
+		<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center; margin: 30px;">Ecosystem We
+			Operate
+			in</span>
+		<div class="blockchain-carosel-section" style="padding: 0 !important;">
+			<div class="carosel-wrapper">
+				<div class="carosel-track">
+					<!-- 6 blockchains x2 for infinite effect -->
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/eth.png" alt="Ethereum" />
+						<span>Ethereum</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/sol.png" alt="Solana" />
+						<span>Solana</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/pol.webp" alt="Polygon" />
+						<span>Polygon</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/bnb.png" alt="BNB Chain" />
+						<span>BNB Chain</span>
+					</div>
+					
+
+
+					<!-- 6 blockchains x2 for infinite effect -->
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/eth.png" alt="Ethereum" />
+						<span>Ethereum</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/sol.png" alt="Solana" />
+						<span>Solana</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/pol.webp" alt="Polygon" />
+						<span>Polygon</span>
+					</div>
+					<div class="carosel-item carosel-position">
+						<img src="/static/img/blockchain/bnb.png" alt="BNB Chain" />
+						<span>BNB Chain</span>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End -->
+
+
+
+	<!-- We we operate -->
+	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
+		<div class="inflanar-hero__content" style="margin: 70px 0;">
+			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">Our Services</span>
+			<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">
+				Hype Engine.
+			</h1>
+			<h1 class="inflanar-hero__title"
+				style="font-family: sans-serif; font-size: 50px; text-align: center; color: brown; margin-top: -20px;">
+				Growth Machine.
+			</h1>
+		</div>
+
+		<div class="container" style="margin-bottom: 70px;">
+			<div class="row ag-margin">
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="200">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-location-dot"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								Brand Positioning
+							</h5>
+							<span class=" inflanar-regular-font">
+								Build a brand narrative that sticks and scale
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="400">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-rocket"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								Precise KOL Execution
+							</h5>
+							<span class=" inflanar-regular-font">
+								Right KOLs, right timing. Perfect Execution.
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="600">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-comment"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								Hype Team
+							</h5>
+							<span class=" inflanar-regular-font">
+								UGC, Reply Guy, KOL & engagement team spark a hype snowball.
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Second row -->
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="800">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-heart"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								Algoritmic Content
+							</h5>
+							<span class=" inflanar-regular-font">
+								Creative posts for max reach & X algoritmic domiinance.
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="1000">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-lightbulb"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								TG & DC Communities
+							</h5>
+							<span class=" inflanar-regular-font">
+								Structure, engage, and grow your web3 community.
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="1200">
+					<div class="inflanar-hcard inflanar-hcard--one">
+						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
+							<div class="agency-services agency-color">
+								<i class="fas fa-chart-bar"></i>
+							</div>
+							<h5 style="font-family: sans-serif;">
+								Smart Marketing
+							</h5>
+							<span class=" inflanar-regular-font">
+								Strategic plays that turn token flow into profit flow
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End -->
+
+	<!-- Success -->
+	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
+		<div class="inflanar-hero__content" style="margin-top: 50px;">
+			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">How do we succeed</span>
+			<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">
+				Strategize. Execute
+			</h1>
+		</div>
+	</section>
+
+	<!-- Funfacts 1 -->
+	<section class="pd-top-30 pd-btm-10 inflanar-ohidden" style="margin-top: 70px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="">
+						<div class="funfacts-scroll funfacts-scroll-wrapper">
+							<div>
+							<div class="funfacts__card fun-size" style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
+								<img src="/static/img/blockchain/plan.png">
+								
+							</div>
+							<h3 style="font-family: sans-serif; margin-top: 30px;">
+								Plan
+							</h3>
+							<span class=" inflanar-regular-font">
+								Book a call and let's craft the strategy for you
+							</span>
+							</div>
+ 
+							<div>
+								<div class="funfacts__card fun-size" style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
+									<img src="/static/img/blockchain/algo.png">
+								</div>
+								<h3 style="font-family: sans-serif; margin-top: 30px; text-align: center;">
+									Algorithm Growth
+								</h3>
+								<span class=" inflanar-regular-font" style="text-align: center;">
+									Hand us over your account, let's fuel the algorithm
+								</span>
+							</div>
+
+							
+							<div>
+								<div class="funfacts__card fun-size" style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
+									<img src="/static/img/blockchain/algo.png">
+								</div>
+								<h3 style="font-family: sans-serif; margin-top: 30px; text-align: end;">
+									Impact
+								</h3>
+								<span class=" inflanar-regular-font" style="display: flex; flex-direction: row-reverse;">
+									Now watch the impact.
+								</span>
+							</div>
+						</div>
+					</div> <!-- end wrapper -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
+		<div class="inflanar-hero__content" style="margin-top: 70px;">
+			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">Packages</span>
+			<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center; margin-bottom: 30px;">
+				Top talent with
+				<br>premium quality.
+			</h1>
+		</div>
+		<div class="container" style="margin-top: 50px;">
+			<div class="row align-items-start">
+				<!-- Basic Plan -->
+				<div class="col-lg-4 col-md-6 mb-4 ag-height">
+					<div class="inflanar-service" style="padding: 30px; height: 100%;">
+						<div class="inflanar-section__head mg-btm-20">
+							<div class="agency-services agency-color"><i class="fas fa-home"></i></div>
+							<h5 style="font-family: sans-serif; font-weight: lighter;">Basic</h5>
+							<span class="inflanar-regular-font">Basic Web3 Project maintaining steady growth.</span>
+						</div>
+						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
+							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Get a Free Proposal</a>
+						</div>
+						<ul class="package-checklist mt-3">
+							<li><span class="check-circle">✔</span> Basic Content Creation</li>
+							<li><span class="check-circle">✔</span> Basic Telegram or Discord Support</li>
+							<li><span class="check-circle">✔</span> Engagement Team Integrate</li>
+							<li><span class="check-circle">✔</span> Reply Guy Integrate</li>
+							<li><span class="check-circle">✔</span> Basic Brand Consulting</li>
+							<li><span class="check-circle">✔</span> Weekly Meeting</li>
+							<li><span class="check-circle">✔</span> Detailed Monthly Reports</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Premium Plan -->
+				<div class="col-lg-4 col-md-6 mb-4 ag-height">
+					<div class="inflanar-service" style="padding: 30px; height: 100%;">
+						<div class="inflanar-section__head mg-btm-20">
+							<div class="agency-services agency-color"><i class="fas fa-crown"></i></div>
+							<h5 style="font-family: sans-serif; font-weight: lighter;">Premium+</h5>
+							<span class="inflanar-regular-font">Growing Web3 Projects seeking stronger
+								communities.</span>
+						</div>
+						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
+							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Get a Free Proposal</a>
+						</div>
+						<ul class="package-checklist mt-3">
+							<li> Everything in Basic and:</li>
+							<li><span class="check-circle">✔</span> Full Access Gold Tick</li>
+							<li><span class="check-circle">✔</span> Hype Engine Activation (KOL Marketing included)</li>
+							<li><span class="check-circle">✔</span> X Algorithm Consulting</li>
+							<li><span class="check-circle">✔</span> Unlimited Content Creation</li>
+							<li><span class="check-circle">✔</span> Tailor-Made Marketing Strategy</li>
+							<li><span class="check-circle">✔</span> Premium+ Brand Consulting</li>
+							<li><span class="check-circle">✔</span> Customized AI Agent Creation</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Customized Plan -->
+				<div class="col-lg-4 col-md-12 mb-4">
+					<div class="inflanar-service" style="padding: 30px; height: 100%;">
+						<div class="inflanar-section__head mg-btm-20">
+							<div class="agency-services agency-color"><i class="fas fa-calendar"></i></div>
+							<h5 style="font-family: sans-serif; font-weight: lighter;">Customized</h5>
+							<span class="inflanar-regular-font">Learn more how we work and how we can help you and your
+								business.</span>
+						</div>
+						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
+							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Book a call</a>
+						</div>
+					</div>
+
+					<!-- Nested Plan: Control Growth Metric -->
+					<div class="inflanar-service mt-4" style="padding: 30px; height: 100%;">
+						<div class="inflanar-section__head mg-btm-20">
+							<div class="agency-services agency-color"><i class="fas fa-cog"></i></div>
+							<h5 style="font-family: sans-serif; font-weight: lighter;">Control growth metric with Scrap3
+							</h5>
+							<span class="inflanar-regular-font">Seeking a different scope of work? </span>
+						</div>
+						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
+							<a href="/" class="inflanar-btn inflanar-btn--header agency-color">Start Now</a>
+						</div>
+						<div class="inflanar-regular-font mt-2">
+							We created a tool for team management
+						</div>
+						<ul class="package-checklist mt-2">
+							<li><span class="check-circle">✔</span> Hire your own team or freelancers</li>
+							<li><span class="check-circle">✔</span> Control the metrics</li>
+							<li><span class="check-circle">✔</span> Pay when satisfied</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<!-- Brands -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="inflanar-brands inflanar-bg-cover inflanar-section-shape9">
+						<div class="row align-items-center  inflanar-row-gap-80">
+							<div class="col-lg-6 col-12 mg-top-30">
+								<!-- Section TItle -->
+								<div class="inflanar-section__head inflanar-section__head--brands">
+									<h2 class="inflanar-section__title mg-btm-10">We Have Partners From Big Brands <span
+											class="inflanar-scolor">243+ Clients</span> </h2>
+									<p style="font-family: sans-serif;"> Web3 Projects thrive on
+										community engagements. We help them get it through authentic community led
+										growth.</p>
+									<div class="inflanar-brands-btn mg-top-40">
+										<a href="register.html"
+											class="inflanar-btn inflanar-btn__secondary inflanar-btn__big system-font"><span>Start
+												Campaigning!</span></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="400">
+								<div class="row">
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand1.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand2.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand3.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand4.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand5.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand6.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand7.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand8.svg"></a>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
+										<div class="brands__single">
+											<a href="#"><img src="/static/img/in-brand9.svg"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Brands -->
+
+	<!-- Contact Us -->
+	<section class="inflanar-contact inflaner-inner-page pd-top-90 pd-btm-120" id="contact">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5 col-12 mg-top-30">
+					<div class="inflanar-contact__box inflanar-bg-cover inflanar-section-shape17">
+						<!-- Contact heading -->
+						<div class="inflanar-contact__heading">
+							<h2 class="inflanar-contact-form__title m-0">Contact Info</h2>
+							<p class="inflanar-contact__htext system-font">Our Contact Info and we' ll respond as soon
+								as possible
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-xl-6 col-lg-12 col-md-6 col-12 mg-top-30">
+								<!-- Single Contact -->
+								<div class="inflanar-contact__single">
+									<div class="inflanar-contact__icon">
+										<i class="fas fa-phone-alt"></i>
+									</div>
+									<div class="inflanar-contact__content">
+										<p class="inflanar-contact__title system-font">
+											<a href="tel:+00 000 000 0000">+00 000 000 0000</a>
+											<a href="tel:+00 000 000 0000">TG: Scrap3xyz</a>
+										</p>
+									</div>
+								</div>
+								<!-- End Single Contact -->
+							</div>
+							<div class="col-xl-6 col-lg-12 col-md-6 col-12 mg-top-30">
+								<!-- Single Contact -->
+								<div class="inflanar-contact__single">
+									<div class="inflanar-contact__icon">
+										<i class="fas fa-envelope"></i>
+									</div>
+									<div class="inflanar-contact__content">
+										<p class="inflanar-contact__title system-font">
+											<a
+												href="https://quomodothemes.website/cdn-cgi/l/email-protection#99f7f8e3f8f2f8f1f8ebd9fef4f8f0f5b7faf6f4"><span
+													class="__cf_email__"
+													data-cfemail="0967687368626861687b496e64686065276a6664">info@scrap3.xyz</span></a>
+											<a
+												href="https://quomodothemes.website/cdn-cgi/l/email-protection#c8a1a6aea7b1a7bdba88afa5a9a1a4e6aba7a5"><span
+													class="__cf_email__"
+													data-cfemail="d0b9beb6bfa9bfa5a290b7bdb1b9bcfeb3bfbd">X:
+													@scrap3xyz</span></a>
+										</p>
+
+									</div>
+								</div>
+								<!-- End Single Contact -->
+							</div>
+							<div class="col-12 mg-top-30">
+								<!-- Single Contact -->
+								<div class="inflanar-contact__single">
+									<div class="inflanar-contact__icon">
+										<i class="fa-solid fa-location-dot"></i>
+									</div>
+									<div class="inflanar-contact__content">
+										<p class="inflanar-contact__title system-font">
+											Dhaka | Remote
+										</p>
+
+									</div>
+								</div>
+								<!-- End Single Contact -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7 col-12 mg-top-30">
+					<!-- Comments Form -->
+					<div class="inflanar-comments-form inflanar-comments-form--reviews">
+						<p class="inflanar-contact__htext system-font">Want your Campaign life on Scrap3?</p>
+						<h3 class="inflanar-contact-form__title m-0">Sign Up or Send a Message</h3>
+						<form action="#">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-12">
+									<div class="form-group inflanar-form-input">
+										<label>Name*</label>
+										<input class="ecom-wc__form-input" type="text" name="f_name"
+											placeholder="Garikoka Thomash" required="required">
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 col-12">
+									<div class="form-group inflanar-form-input">
+										<label>Email*</label>
+										<input class="ecom-wc__form-input" type="text" name="email"
+											placeholder="infoyour@gmail.com" required="required">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group inflanar-form-input">
+										<label>Message*</label>
+										<textarea class="ecom-wc__form-input" name="f_name"
+											placeholder="Write your message"></textarea>
+									</div>
+								</div>
+								<div class="col-12 mg-top-20">
+									<button type="submit" class="inflanar-btn system-font"><span>Contact
+											Us</span></button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- End Comments Form -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Contact Us -->
+
+	<!-- Faq Area -->
+		<section class="inflanar-bg-cover pd-top-90 pd-btm-120 inflanar-ohidden">
+			<div class="container inflanar-container-medium">
+				<div class="row inflanar-container-medium__row align-items-center">
+					<div class="col-lg-5 col-12 mg-top-30">
+						<!-- Section TItle -->
+						<div class="inflanar-section__head mg-btm-50">
+							<span class="inflanar-section__badge inflanar-primary-color m-0" data-aos="fade-in" data-aos-delay="300">
+								<span>Our Faq’s</span> 
+							</span>
+							<h2 class="inflanar-section__title mg-btm-20" data-aos="fade-in" data-aos-delay="400">Got any questions?</h2>
+							<span class=" inflanar-regular-font">
+								We've got answers.
+							</span>
+						</div>
+						<!-- Support Img -->
+						<div class="inflanar-support-img" data-aos="fade-up" data-aos-delay="200">
+							<img src="/static/img/in-faq-img.png" alt="#">
+						</div>
+						<!-- End Support Img -->
+					</div>
+					<div class="col-lg-7 col-12 mg-top-30">
+						<div class="inflanar-accordion accordion accordion-flush" id="inflanar-accordion">
+							<!-- End Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-1">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse1">What is Web3 Marketing?</button>
+								</h2>
+								<div id="ac-collapse1" class="accordion-collapse collapse"  data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										Web3 marketing focuses on decentralized communities, token economies, and blockchain-based platforms, utilizing influencer collaborations and community incentives.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single active mg-top-20">
+								<h2 class="accordion-header" id="inflanart-3">
+									<button class="accordion-button   inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse2" >How do you select KOLs?
+
+									</button>
+								</h2>
+								<div id="ac-collapse2" class="accordion-collapse collapse show"  data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										We analyze audience demographics, engagement, authenticity, and campaign goals to ensure the best fit for your brand.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-2">
+									<button class="accordion-button collapsed  inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse3" aria-expanded="false">What platform do you use for your campaign?</button>
+								</h2>
+								<div id="ac-collapse3" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										We leverage Twitter, Discord, Telegram, YouTube, and Web3-native platforms for community engagement and promotions.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-4">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse4" >How do you grow web3 community?</button>
+								</h2>
+								<div id="ac-collapse4" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										Through viral campaigns, strategic partnerships, influencer outreach, and active community engagement on key platforms.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-5">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse5" >Do you offer paid advertizing services?</button>
+								</h2>
+								<div id="ac-collapse5" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										Yes, we run targeted ads on Web3-friendly platforms, including Twitter, Reddit, and crypto-specific networks.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-5">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse5" >How do you measure marketing Success?</button>
+								</h2>
+								<div id="ac-collapse5" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										We track KPIs like engagement rate, community growth, conversion rate, token sales, and overall ROI.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-5">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse5" >What industry do you work with?</button>
+								</h2>
+								<div id="ac-collapse5" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										We specialize in crypto, DeFi, NFTs, GameFi, and blockchain-based projects.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+							<!-- Single Accordion -->
+							<div class="accordion-item inflanar-accordion__single mg-top-20">
+								<h2 class="accordion-header" id="inflanart-5">
+									<button class="accordion-button collapsed inflanar-accordion__heading" type="button" data-bs-toggle="collapse" data-bs-target="#ac-collapse5" >Can you help with influencers partnerships?</button>
+								</h2>
+								<div id="ac-collapse5" class="accordion-collapse collapse" data-bs-parent="#inflanar-accordion">
+									<div class="accordion-body inflanar-accordion__body">
+										Yes, we connect brands with KOLs who align with their vision and marketing goals.
+									</div>
+								</div>
+							</div>
+							<!-- End Single Accordion -->
+						</div>	
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Faq Area -->
+		
+
+	<!-- Footer CTA -->
+	<section class="footer-cta inflanar-bg-cover section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-cta__inner inflanar-scolor-bg">
+						<div class="footer-cta__content">
+							<h3 class="footer-cta__title text-white">Community Powered Growth for Web3 Projects</h3>
+							<a href="#" class="inflanar-btn inflanar-btn__third system-font"><span>Join
+									Community!</span></a>
+						</div>
+
+						<div class="footer-cta__img">
+							<div class="inflanar-anim-shape4">
+								<img src="/static/img/infmarket.webp"
+									style="height: 300px; width: 300px; margin-left: 200px;">
+							</div>
+							<div class="inflanar-scard inflanar-scard--3 inflanar-anim-shape7">
+								<img src="/static/img/in-s-icon1.svg">
+							</div>
+							<div class="inflanar-scard inflanar-scard--4 inflanar-anim-shape6">
+								<img src="/static/img/in-s-icon2.svg">
+							</div>
+							<div class="inflanar-scard inflanar-scard--5 inflanar-anim-shape5">
+								<img src="/static/img/in-s-icon3.svg">
+							</div>
+
+							<div class="inflanar-scard inflanar-scard--1 inflanar-anim-shape8"
+								style="margin-left: 500px;">
+								<img src="/static/img/in-scard1.png">
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Footer CTA -->
+
+	<!-- Footer -->
+	<footer class="footer-area footer-area--v2 p-relative">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-top-inner pd-top-30 pd-btm-100">
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-12">
+								<!-- Footer Widget -->
+								<div class="footer-about-widget">
+									<div class="footer-logo inflanar-header__logo">
+										<a class="logo" href="index.html"><img src="/static/img/scrap3-logo-black.png"
+												alt="#"></a>
+									</div>
+									<h4 class="footer-about-widget__title">Want to Create Something <span>Great
+											Together?</span></h4>
+									<div class="footer-get-touch">
+										<p>Get in Touch.. <a href="index.html"><span class="__cf_email__"
+													data-cfemail="e088858c8c8fa091958f8d8f848f898e868fce838f8d">info@Scrap3.xyz</span></a>
+										</p>
+									</div>
+
+								</div>
+								<!-- End Footer Widget -->
+							</div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<!-- Footer Widget -->
+								<div class="single-widget footer-useful-links">
+									<h3 class="widget-title">Quick Links</h3>
+									<ul class="footer__list list-none">
+										<li class="active"><a href="index.html">Home</a></li>
+										<li><a href="#about">About</a></li>
+										<li><a href="#choose">Why Choose Us</a></li>
+										<li><a href="#how_it_works">How it Works</a></li>
+										<li><a href="#campaing">Campaings</a></li>
+										<li><a href="#testimonials">Testimonials</a></li>
+										<li><a href="#contact">Advertize With Us</a></li>
+									</ul>
+								</div>
+								<!-- End Footer Widget -->
+							</div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<!-- Footer Widget -->
+								<div class="single-widget footer-contact">
+									<h3 class="widget-title">Working Hour</h3>
+									<div class="f-contact__form-top">
+										<ul class="f-contact-list list-none">
+											<li>Mon - Fri: 7.00am - 6.00pm</li>
+											<li>Sat: 7.00am - 6.00pm</li>
+										</ul>
+									</div>
+								</div>
+								<!-- End Footer Widget -->
+
+								<!-- Footer Widget -->
+								<div class="single-widget footer-contact mg-top-30">
+									<h3 class="widget-title">Our Location</h3>
+									<div class="f-contact__form-top">
+										<p>Dhaka | Remote
+										</p>
+									</div>
+								</div>
+								<!-- End Footer Widget -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Copyright -->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="copyright__inner">
+							<!-- Copyright Text -->
+							<p class="copyright-text">Copyright @2023 All rights reserved <a href="#"
+									target="_blank">Scrap3 Team</a></p>
+							<!-- Social -->
+							<ul class="inflanar-social inflanar-social__v2">
+								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-twitter"></i></a></li>
+								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-behance"></i></a></li>
+								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-instagram"></i></a></li>
+								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-linkedin"></i></a></li>
+								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-facebook-f"></i></a></li>
+							</ul>
+							<!-- End Social -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Copyright -->
+	</footer>
+	<!-- End Footer -->
+
+	<!-- Scrool Top -->
+	<a href="#" class="scrollToTop"><img src="/static/img/in-scroll-up.svg"></a>
+
+	<!-- Jquery JS -->
+	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery-migrate.js"></script>
+	<script src="/static/js/jquery-ui.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="/static/js/bootstrap.min.js"></script>
+	<!-- Aos JS -->
+	<script src="/static/js/aos.min.js"></script>
+	<!-- CK Editor JS -->
+	<script src="/static/js/ckeditor.min.js"></script>
+	<!-- Select2 JS-->
+	<script src="/static/js/select2-js.min.js"></script>
+	<!-- Video Popup JS -->
+	<script src="/static/js/video-popup.min.js"></script>
+	<!-- Swiper SLider JS -->
+	<script src="/static/js/swiper-slider.min.js"></script>
+	<!-- Flex SLider JS -->
+	<script src="/static/js/flex-slider.html"></script>
+	<!-- Waypoints JS -->
+	<script src="/static/js/waypoints.min.js"></script>
+	<!-- Counterup JS -->
+	<script src="/static/js/jquery.counterup.min.js"></script>
+	<!-- Easing JS -->
+	<script src="/static/js/easing.min.html"></script>
+	<!-- Main JS -->
+	<script src="/static/js/active.js"></script>
+
+	<script>
+		/* Testimonial Slider */
+		var swiper = new Swiper(".inflanar-slider-testimonial", {
+			autoplay: {
+				delay: 3333500,
+			},
+			mousewheel: true,
+			keyboard: true,
+			loop: true,
+			grabCursor: true,
+			spaceBetween: 0,
+			centeredSlides: false,
+			pagination: {
+				el: '.swiper-pagination__testimonial',
+				type: 'bullets',
+				clickable: true,
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: "1",
+				},
+				428: {
+					slidesPerView: "1",
+				},
+				768: {
+					slidesPerView: "1",
+				},
+				1024: {
+					slidesPerView: "2",
+				},
+			},
+		});
+
+	</script>
+</body>
+
+<!-- Mirrored from quomodothemes.website/html/inflanar/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 23:26:02 GMT -->
+
+</html>
