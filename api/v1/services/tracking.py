@@ -20,8 +20,15 @@ class TrackService(Service):
         track = db.query(Tracking).all()
         return {"message":"successfully fetched all Tracking","Data":track}
 
-    def fetch():
-        pass
+    def fetch(self,db:Session,tracking_number):
+        tracking= db.query(Tracking).filter(Tracking.tracking_number==tracking_number).first()
+        if tracking == None:
+            return {"message":"error/not found"}
+        
+        return{"message":"successfully fetched tracking number",
+               "data":tracking,
+               "food": "akpu"
+               }
 
     def delete():
         pass

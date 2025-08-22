@@ -23,6 +23,14 @@ def get_tracking(db:Session = Depends(get_db)):
     tracking = tracking_services.fetch_all(db=db)
     return tracking
 
+@track_router.get("/{track_number}")
+def get_single_tracking(track_number:str, db:Session= Depends(get_db), ):
+    tracking=tracking_services.fetch(db=db, tracking_number=track_number)
+    return tracking
+
+
+
+
 @track_router.post("/update")
 def update_tracking(schema: TrackingBase, db:Session = Depends(get_db)):
     """Endpoint to update tracking details"""
