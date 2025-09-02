@@ -6,9 +6,8 @@ from sqlalchemy import pool
 from alembic import context
 import os
 from api.db.database import Base
-#rom sqlalchemy import MetaData
+from api.utils.settings import settings
 
-#target_metadata = Base.metadata
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -17,8 +16,10 @@ config = context.config
 # Interpret the config file for Python logging.
 fileConfig(config.config_file_name)
 
-# Use environment variable for DB URL
-db_url = "postgresql://postgres:1234567890@localhost:5432/logistics"
+database_url = settings.DB_URL
+
+#db_url = "postgresql://logistics:1234567890@localhost:5432/logistics"
+db_url = database_url
 
 if db_url:
     config.set_main_option("sqlalchemy.url", db_url)

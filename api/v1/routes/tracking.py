@@ -26,7 +26,7 @@ def get_tracking(db:Session = Depends(get_db)):
 @track_router.get("/{track_number}")
 def get_single_tracking(track_number:str, db:Session= Depends(get_db), ):
     tracking=tracking_services.fetch(db=db, tracking_number=track_number)
-    return tracking
+    return jsonable_encoder(tracking)
 
 
 

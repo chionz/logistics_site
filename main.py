@@ -15,7 +15,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from api.utils.json_response import JsonResponseDict
 from api.utils.logger import logger
-from api.v1.routes import api_version_one
+from api.v1.routes import api_version_one, tracking
 from api.utils.settings import settings
 
 from api.db.database import create_database
@@ -76,6 +76,40 @@ def index(request: Request):
             raise e 
     template = templates_env.get_template("index.html")
     return template.render({"request": request, "title": "Cartty Logistics", "isLogin": isLogin, "templates_env": templates_env})
+
+from fastapi import Depends
+from api.db.database import get_db
+from sqlalchemy.orm import Session
+@app.get("/tracking/{track_number}", response_class=HTMLResponse, tags=["Track View"])
+def index(request: Request, track_number:str, db: Session = Depends(get_db)):
+    """main page"""
+    try:
+        user_id = user_service.fetch_user_refresh_token(request, db=db)
+        isLogin = True if user_id else False
+    except HTTPException as e:
+        if e.status_code == 401:
+            isLogin = False
+        else:
+            raise e 
+    print("DEBUG DB URL:", os.getenv("DB_URL"))
+    track = tracking.get_single_tracking(track_number, db)
+    print(track)
+    template = templates_env.get_template("main.html")
+
+    return template.render(
+        {
+            "request": request,
+            "title": "Title",
+            "tag" : "Tracking",
+            "page": "dashboard",
+            "data": {"track": track, },
+            "track": track,
+            "templates_env": templates_env,
+            "isLogin": True
+        }
+    )
+
+
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")

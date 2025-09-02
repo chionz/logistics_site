@@ -1,0 +1,52 @@
+<div class="col-lg-9 col-md-8 col-12  inflanar-personals__content">
+    <div class="inflanar-supports" style="margin-top: 50px;">
+        <div class="inflanar-profile-info__head">
+            <h3 class="inflanar-profile-info__heading">Tracking Information</h3>
+        </div>
+
+        <ul class="inflanar-profile-info__list inflanar-dflex-column list-none">
+            <li class="inflanar-dflex">
+                <h4 class="inflanar-profile-info__title">Tracking Number:</h4>
+                <p class="inflanar-profile-info__text">{{track.data.tracking_number}}</p>
+            </li>
+            <li class="inflanar-dflex">
+                <h4 class="inflanar-profile-info__title">Package Details :</h4>
+                <p class="inflanar-profile-info__text">{{track.data.name_of_package}}</p>
+            </li>
+            <li class="inflanar-dflex">
+                <h4 class="inflanar-profile-info__title">Amount :</h4>
+                <p class="inflanar-profile-info__text">${{track.data.price}}</p>
+            </li>
+            <li class="inflanar-dflex">
+                <h4 class="inflanar-profile-info__title">Destination :</h4>
+                <p class="inflanar-profile-info__text">{{track.data.delivery_destination}}</p>
+            </li>
+            <li class="inflanar-dflex">
+                <h4 class="inflanar-profile-info__title">Dispach Date :</h4>
+                <p class="inflanar-profile-info__text"> {{track.data.created_at}}</p>
+            </li>
+        </ul>
+    </div>
+    
+    
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dropdownButton = document.getElementById("dropdownMenuButton");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        dropdownButton.addEventListener("click", function (event) {
+            dropdownMenu.classList.toggle("show");
+            event.stopPropagation(); // Prevent closing when clicking the button
+        });
+
+        document.addEventListener("click", function () {
+            dropdownMenu.classList.remove("show"); // Close when clicking outside
+        });
+
+        dropdownMenu.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent closing when clicking inside the menu
+        });
+    });
+</script>
+
