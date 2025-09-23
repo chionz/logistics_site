@@ -9,11 +9,25 @@ from api.db.database import Base
 class Tracking(BaseTableModel):
     __tablename__ = "tracking"
 
-    tracking_number = Column(String, unique=True, nullable=False)
-    name_of_package = Column(String, nullable=False)
-    delivery_destination = Column(String, nullable=False)
-    dispatch_location = Column(String, nullable=True)
-    price = Column(Float, nullable=False)
+    senders_name = Column(String, unique=False, nullable=False)
+    senders_email = Column(String, nullable=True)
+    senders_phonenumber = Column(String, nullable=True)
+    package = Column(String, nullable=False)
+
+    additional_desc = Column(String, nullable=True)
+    address_to = Column(String, nullable=False)  
+    pickup_loc = Column(String, nullable=False)
     product_picture = Column(String, nullable=True)
+
+    officer_ondeck=Column(String,nullable=True)
+    status = Column(String,nullable=False,server_default="pending")
+    reciever_name=Column(String,nullable=False)
+    reciever_email = Column(String, nullable=True)
+    reciever_phonenumber = Column(String, nullable=True)
+
+
+    price = Column(Float, nullable=False)
+   
+
 
     
