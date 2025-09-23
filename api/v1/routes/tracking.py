@@ -36,3 +36,4 @@ def update_tracking(schema: TrackingBase, db:Session = Depends(get_db)):
     """Endpoint to update tracking details"""
     tracking = tracking_services.update(db=db, schema=schema)
     return tracking
+
