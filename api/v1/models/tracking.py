@@ -1,7 +1,7 @@
 """ tracking data models
 """
 
-from sqlalchemy import Column, String, Float
+from sqlalchemy import Column, String, Float, Boolean, text
 from api.v1.models.base_model import BaseTableModel
 from api.db.database import Base
 
@@ -25,6 +25,7 @@ class Tracking(BaseTableModel):
     reciever_email = Column(String, nullable=True)
     reciever_phonenumber = Column(String, nullable=True)
 
+    is_deleted = Column(Boolean, server_default=text("false"))
 
     price = Column(Float, nullable=False)
    
