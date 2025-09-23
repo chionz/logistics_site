@@ -13,6 +13,8 @@ from api.v1.schemas import user
 from api.v1.schemas.tracking import TrackingBase
 
 
+
+
 class TrackService(Service):
     """User service"""
 
@@ -21,7 +23,7 @@ class TrackService(Service):
         return {"message":"successfully fetched all Tracking","Data":track}
 
     def fetch(self,db:Session,tracking_number):
-        tracking= db.query(Tracking).filter(Tracking.tracking_number==tracking_number).first()
+        tracking= db.query(Tracking).filter(Tracking.id==tracking_number).first()
         if tracking == None:
             return {"message":"error/not found"}
         
@@ -52,7 +54,7 @@ class TrackService(Service):
     def create(self, db: Session, schema: TrackingBase):
         """Creates a tracking details"""
 
-        tracking = db.query(Tracking).all()
+
 
         # Create tracking details and other attributes from schema
         track =Tracking(**schema.model_dump())
