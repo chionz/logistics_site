@@ -32,8 +32,15 @@ class TrackService(Service):
                "food": "akpu"
                }
 
-    def delete():
-        pass
+    def delete(self, db:Session, track_id):
+
+        tracking= db.query(Tracking).filter(Tracking.id==track_id).first()
+        if not tracking:
+            return{"message": "error/not found"}
+        tracking.is_deleted = True
+        db.commit()
+        db.refresh(tracking)
+        return{"message": "successful"}
     
     def update(self,db:Session, schema: TrackingBase):
         """"""

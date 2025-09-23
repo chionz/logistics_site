@@ -23,6 +23,7 @@ def get_tracking(db:Session = Depends(get_db)):
     tracking = tracking_services.fetch_all(db=db)
     return tracking
 
+
 @track_router.get("/{track_number}")
 def get_single_tracking(track_number:str, db:Session= Depends(get_db), ):
     tracking=tracking_services.fetch(db=db, tracking_number=track_number)
@@ -37,3 +38,7 @@ def update_tracking(schema: TrackingBase, db:Session = Depends(get_db)):
     tracking = tracking_services.update(db=db, schema=schema)
     return tracking
 
+@track_router.post("/delete{track_id}")
+def delete_single(track_id:str, db:Session= Depends(get_db), ):
+    tracking = tracking_services.delete(db=db, track_id=track_id)
+    return tracking
