@@ -2,7 +2,7 @@ import random
 import string
 from typing import Any, Optional, Annotated
 from fastapi import Depends, HTTPException, Request, Response
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 
 from api.core.base.services import Service
@@ -10,7 +10,7 @@ from api.core.dependencies.email_sender import send_email
 from api.db.database import get_db
 from api.v1.models.tracking import DeliveryUpdate, Tracking
 from api.v1.schemas import user
-from api.v1.schemas.tracking import TrackingBase, TrackingUpdate
+from api.v1.schemas.tracking import DeliveryUpdateS, TrackingBase, TrackingUpdate
 
 
 class TrackService(Service):
@@ -21,7 +21,8 @@ class TrackService(Service):
         return {"message":"successfully fetched all Tracking","Data":track}
 
     def fetch(self,db:Session,tracking_number):
-        tracking= db.query(Tracking).filter(Tracking.id==tracking_number).first()
+        tracking = db.query(Tracking).options(joinedload(Tracking.updates)).filter(Tracking.id == tracking_number).first()
+        #tracking= db.query(Tracking).filter(Tracking.id==tracking_number).first()
         if tracking == None:
             raise HTTPException(
                                 status_code=404,
@@ -72,6 +73,22 @@ class TrackService(Service):
             "message": "Created successfully",
             "data": track
         }
+    
+    def create_delivery_update(self, db: Session, schema: DeliveryUpdateS):
+        """Creates a tracking details"""
+
+        # Create tracking details and other attributes from schema
+        delivery =DeliveryUpdate(**schema.model_dump())
+        db.add(delivery)
+        db.commit()
+        db.refresh(delivery) 
+
+        return {
+            "message": "Created successfully",
+            "data": delivery
+        }
+    
+
     def get_single_update(self, update_id: str, db:Session):
         track=db.query(DeliveryUpdate).filter(DeliveryUpdate.id == update_id).first()
         if not track:

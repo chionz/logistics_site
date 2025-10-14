@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from api.utils.success_response import success_response
 from api.db.database import get_db
 from api.v1.models.tracking import DeliveryUpdate
-from api.v1.schemas.tracking import TrackingBase, TrackingUpdate
+from api.v1.schemas.tracking import DeliveryUpdateS, TrackingBase, TrackingUpdate
 from api.v1.services.tracking import tracking_services
 
 
@@ -56,3 +56,30 @@ def get_update(update_id: str, db: Session = Depends (get_db)):
     
     return track
     
+@track_router.post("/deliveries/{id}/updates")
+def create_delivery_update(id:str, schema: DeliveryUpdateS, db:Session = Depends(get_db)):
+    """Endpoint to create delivery update"""
+    tracking=tracking_services.fetch(db=db, tracking_number=id)
+    if not tracking:
+        raise HTTPException(status_code=404, detail="Package Not Found")
+    
+    deliveryschema = DeliveryUpdateS(
+        tracking_id= id,
+        status=schema.status,
+        location = schema.location,
+        remarks =schema.remarks
+    )
+
+    delivery = tracking_services.create_delivery_update(db=db, schema=deliveryschema)
+
+    return delivery
+
+@track_router.get("/deliveries/{id}/updates")
+def get_delivery_update(id:str, db:Session = Depends(get_db)):
+    """Endpoint to get delivery update"""
+    
+    #to fetch single delivery using tracking id
+    tracking=tracking_services.fetch(db=db, tracking_number=id)
+    
+    if not tracking:
+        raise HTTPException(status_code=404, detail="Package Not Found")

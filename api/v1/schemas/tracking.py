@@ -45,3 +45,11 @@ class TrackingUpdate(BaseModel):
    
 
     model_config = ConfigDict(from_attributes=True)
+
+class DeliveryUpdateS(BaseModel):
+
+    tracking_id: str
+    status: str
+    location: str
+    remarks: str
+

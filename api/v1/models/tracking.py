@@ -29,6 +29,7 @@ class Tracking(BaseTableModel):
     is_deleted = Column(Boolean, server_default=text("false"))
 
     price = Column(Float, nullable=False)
+    updates = relationship("DeliveryUpdate", back_populates="tracking", cascade="all, delete-orphan")
    
 
 
@@ -36,11 +37,11 @@ class Tracking(BaseTableModel):
 class DeliveryUpdate(BaseTableModel):
     __tablename__ = "delivery_updates"
 
-tracking_id = Column(String, ForeignKey("tracking.id"), nullable=False)
+    tracking_id = Column(String, ForeignKey("tracking.id"), nullable=False)
 
-status = Column(String, nullable=False)
-location = Column(String, nullable=True)
-remarks = Column(String, nullable=True)
-is_deleted = Column(Boolean, server_default=text("false"))
+    status = Column(String, nullable=False)
+    location = Column(String, nullable=True)
+    remarks = Column(String, nullable=True)
+    is_deleted = Column(Boolean, server_default=text("false"))
 
-tracking = relationship("Tracking", back_populates="updates")
+    tracking = relationship("Tracking", back_populates="updates")
