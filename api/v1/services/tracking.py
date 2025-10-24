@@ -13,6 +13,8 @@ from api.v1.schemas import user
 from api.v1.schemas.tracking import DeliveryUpdateS, TrackingBase, TrackingUpdate
 
 
+
+
 class TrackService(Service):
     """User service"""
 
@@ -23,6 +25,7 @@ class TrackService(Service):
     def fetch(self,db:Session,tracking_number):
         tracking = db.query(Tracking).options(joinedload(Tracking.updates)).filter(Tracking.id == tracking_number).first()
         #tracking= db.query(Tracking).filter(Tracking.id==tracking_number).first()
+        tracking= db.query(Tracking).filter(Tracking.id==tracking_number).first()
         if tracking == None:
             raise HTTPException(
                                 status_code=404,
@@ -34,8 +37,15 @@ class TrackService(Service):
                "food": "akpu"
                }
 
-    def delete():
-        pass
+    def delete(self, db:Session, track_id):
+
+        tracking= db.query(Tracking).filter(Tracking.id==track_id).first()
+        if not tracking:
+            return{"message": "error/not found"}
+        tracking.is_deleted = True
+        db.commit()
+        db.refresh(tracking)
+        return{"message": "successful"}
     
     def update(self,db:Session, schema: TrackingUpdate):
         """"""
@@ -61,7 +71,7 @@ class TrackService(Service):
     def create(self, db: Session, schema: TrackingBase):
         """Creates a tracking details"""
 
-        tracking = db.query(Tracking).all()
+
 
         # Create tracking details and other attributes from schema
         track =Tracking(**schema.model_dump())

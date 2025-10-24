@@ -28,6 +28,7 @@ def get_tracking(db:Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Update Not Found")
     return tracking
 
+
 @track_router.get("/{track_number}")
 def get_single_tracking(track_number:str, db:Session= Depends(get_db), ):
     tracking=tracking_services.fetch(db=db, tracking_number=track_number)
@@ -35,8 +36,6 @@ def get_single_tracking(track_number:str, db:Session= Depends(get_db), ):
         raise HTTPException(status_code=404, detail="Update Not Found")
     
     return jsonable_encoder(tracking)
-
-
 
 
 @track_router.post("/update")
@@ -83,3 +82,11 @@ def get_delivery_update(id:str, db:Session = Depends(get_db)):
     
     if not tracking:
         raise HTTPException(status_code=404, detail="Package Not Found")
+        
+    return tracking
+
+@track_router.post("/delete{track_id}")
+def delete_single(track_id:str, db:Session= Depends(get_db), ):
+    tracking = tracking_services.delete(db=db, track_id=track_id)
+    return tracking
+
