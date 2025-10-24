@@ -77,6 +77,30 @@ def index(request: Request):
     template = templates_env.get_template("index.html")
     return template.render({"request": request, "title": "Cartty Logistics", "isLogin": isLogin, "templates_env": templates_env})
 
+@app.get("/about-us", response_class=HTMLResponse, tags=["About Us"])
+def about(request: Request):
+    """main page"""
+    template = templates_env.get_template("about.html")
+    return template.render({"request": request, "title": "About Us", "templates_env": templates_env})
+
+@app.get("/contact-us", response_class=HTMLResponse, tags=["contact Us"])
+def contact(request: Request):
+    """main page"""
+    template = templates_env.get_template("contact.html")
+    return template.render({"request": request, "title": "contact Us", "templates_env": templates_env})
+
+@app.get("/services", response_class=HTMLResponse, tags=["Services"])
+def services(request: Request):
+    """main page"""
+    template = templates_env.get_template("services.html")
+    return template.render({"request": request, "title": "About Us", "templates_env": templates_env})
+
+@app.get("/track", response_class=HTMLResponse, tags=["About Us"])
+def track(request: Request):
+    """main page"""
+    template = templates_env.get_template("track.html")
+    return template.render({"request": request, "title": "Track Shipment", "templates_env": templates_env})
+
 from fastapi import Depends
 from api.db.database import get_db
 from sqlalchemy.orm import Session

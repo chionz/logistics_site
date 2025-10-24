@@ -1,1097 +1,646 @@
 <!DOCTYPE html>
-<html class="no-js" lang="ZXX">
-
-<!-- Mirrored from quomodothemes.website/html/inflanar/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 23:26:30 GMT -->
+<html lang="en">
 
 <head>
-	<!-- Meta Tags -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="Site keywords here">
-	<meta name="description" content="#">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartty Logistics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        :root {
+            --bg-dark-primary: #111827;
+            --bg-dark-secondary: #1F2937;
+            --accent-primary: #4F46E5;
+            --accent-secondary: #6366F1;
+            --text-primary: #F3F4F6;
+            --text-secondary: #9CA3AF;
+        }
 
-	<!-- Site Title -->
-	<title>{{title}}</title>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-primary);
+            color: var(--text-primary);
+        }
 
-	<!-- Fav Icon -->
-	<link rel="icon" href="/static/img/favicon.png">
+        .card {
+            background-color: var(--bg-dark-secondary);
+            border: 1px solid #374151;
+        }
 
-	<!-- Google Fonts -->
-	<link
-		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap"
-		rel="stylesheet">
+        .desktop-nav {
+            transition: width 0.3s ease;
+        }
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
-	<!-- Jquery UI CSS -->
-	<link rel="stylesheet" href="/static/css/jquery-ui.min.css">
-	<!-- Animate CSS -->
-	<link rel="stylesheet" href="/static/css/animate.min.css">
-	<!-- AOS CSS -->
-	<link rel="stylesheet" href="/static/css/aos.min.css">
-	<!-- Fontawesome -->
-	<link rel="stylesheet" href="/static/css/font-awesome-all.min.css">
-	<!-- Swiper Slider CSS -->
-	<link rel="stylesheet" href="/static/css/swiper-slider.min.css">
-	<!-- Select2 CSS -->
-	<link rel="stylesheet" href="/static/css/select2-min.css">
-	<!-- Data Tables -->
-	<link rel="stylesheet" href="/static/css/datatables.min.css">
-	<!-- Video Popup -->
-	<link rel="stylesheet" href="/static/css/video-popup.min.css">
+        .desktop-nav .nav-text {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
 
-	<!-- Main CSS -->
-	<link rel="stylesheet" href="/static/css/theme-default.css">
-	<link rel="stylesheet" href="/static/style.css">
-	<link rel="stylesheet" href="/static/css/agency.css">
+        .desktop-nav:hover .nav-text {
+            opacity: 1;
+        }
 
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QKXTXRPRTV"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
+        .fab-menu-button {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
 
-		gtag('config', 'G-QKXTXRPRTV');
-	</script>
+        .fab-menu-button.active {
+            transform: rotate(45deg);
+        }
+
+        .fab-menu-items {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            transform-origin: bottom center;
+        }
+
+        .fab-menu-item {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hero-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(17, 24, 39, 0.7);
+            /* bg-gray-900 with 70% opacity */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 
 <body>
-	<!-- Start Header Section-->
-	<div id="header">
-		{{templates_env.get_template("header.html").render({"isLogin": isLogin})}}
-	</div>
 
-	<!--JS to call Footer Templates-->
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
+    <!-- Preloader -->
+    <div id="preloader"
+        class="fixed inset-0 bg-gray-900 z-50 flex justify-center items-center transition-opacity duration-500">
+        <div class="flex flex-col items-center">
+            <img src="/static/img/preloader.png" alt="Logo" class="animate-pulse" style="height:50px; width:100px;" >
 
-			fetch("/static/footer.html")
-				.then(response => response.text())
-				.then(data => {
-					document.getElementById("footer").innerHTML = data;
-				});
-		});
-	</script>
+        </div>
+    </div>
 
+    <div class="flex">
+        <!-- Desktop Sidebar Navigation -->
+        <nav
+            class="desktop-nav hidden md:block fixed left-0 top-0 h-full bg-gray-800 shadow-lg w-20 hover:w-56 z-30 group">
+            <ul class="flex flex-col h-full py-4 space-y-2">
+                <li class="px-5 py-3 mb-4">
+                    <a href="/" class="flex items-center space-x-2">
+                        <img src="/static/img/logo-main.png" alt="Logo" style="height:30px; width:30px;">
+                        <!-- <svg class="h-10 w-10 text-indigo-400 flex-shrink-0" viewBox="0 0 32 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            speed lines
+                            <path d="M2 9h5v1H2V9zm0 3h4v1H2v-1zm0 3h3v1H2v-1z" />
 
-	<!-- inflanar Hero -->
-	<section id="hero" class="inflanar-hero inflanar-bg-cover p-relative inflanar-ohidden">
-		<div class="inflanar-hero-shape">
-			<!-- <img src="/static/img/in-hero-shape.svg"> -->
-		</div>
-		<div class="inflanar-hero-shape"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="inflanar-hero__inside" style="min-height: 800px;">
-						<div class="inflanar-hero__inner">
-							<!-- Hero Content -->
-							<div class="inflanar-hero__content" data-aos="fade-up" data-aos-delay="300">
-								<span class="inflanar-hero__sub inflanar-regular-font"
-									style="text-align: center;">Premium Level Marketing.</span>
-								<h1 class="inflanar-hero__title"
-									style="font-family: sans-serif; font-size: 50px; text-align: center;">
-									We act. You win.</h1>
-								<!-- 								<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">Web3 Tasks. <span>Real Proofs.</span> Clean Payouts.</h1> -->
-								<span class="inflanar-hero__sub inflanar-regular-font"
-									style="text-align: center; display: block; max-width: 600px; margin: 0 auto;">
-									Scrap3 Team is an integrated Web3 marketing agency built
-									to move charts
-									and drive real revenue.</span>
-							</div>
-							<!-- <div class="inflanar-header__button"
-								style="display: flex; justify-content: center; margin-top: 50px;">
-								<a href="/register" class="inflanar-btn inflanar-btn--header agency-color"><span>
-										Tracking
-									</span></a>
-							</div> -->
+                            trolley body (longer) 
+                            <path
+                                d="M10 6h11c1 0 1.8.5 2.3 1.2l3 4.5c.3.4.4.8.4 1.3v4a1 1 0 0 1-1 1h-.8a3 3 0 0 1-6 0h-7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" />
 
-							<div class="inflanar-search-form inflanar-search-form__hero mg-top-10" data-aos="fade-up"
-								data-aos-delay="400">
-								<form id="trackingForm" class="inflanar-search-form__form">
-									<div class="inflanar-search-form__group">
-										<div class="inflanar-search-form__icon">
-											<img src="/static/img/search-icon.svg">
-										</div>
-										<input type="text" id="trackingInput" placeholder="Insert Your Tracking Number"
-											required>
-									</div>
-									<div class="inflanar-search-form__button">
-										<button type="submit"
-											class="inflanar-btn inflanar-btn--search"><span>Track</span></button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	</section>
-	<!-- End inflanar Hero -->
+                             wheels
+                            <circle cx="13" cy="18" r="1.8" />
+                            <circle cx="21" cy="18" r="1.8" />
+                        </svg>
+ -->
+                        <span class="nav-text text-xl font-extrabold text-white whitespace-nowrap">Cartty
+                            Logistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center py-3 px-6 text-indigo-400 bg-gray-900">
+                        <i data-feather="home" class="h-6 w-6 flex-shrink-0"></i>
+                        <span class="nav-text ml-4 font-semibold whitespace-nowrap">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="services"
+                        class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                        <i data-feather="grid" class="h-6 w-6 flex-shrink-0"></i>
+                        <span class="nav-text ml-4 font-semibold whitespace-nowrap">Services</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about-us"
+                        class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                        <i data-feather="info" class="h-6 w-6 flex-shrink-0"></i>
+                        <span class="nav-text ml-4 font-semibold whitespace-nowrap">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact-us"
+                        class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                        <i data-feather="phone" class="h-6 w-6 flex-shrink-0"></i>
+                        <span class="nav-text ml-4 font-semibold whitespace-nowrap">Contact</span>
+                    </a>
+                </li>
+                <li class="mt-auto">
+                    <a href="track"
+                        class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                        <i data-feather="compass" class="h-6 w-6 flex-shrink-0"></i>
+                        <span class="nav-text ml-4 font-semibold whitespace-nowrap">Track Shipment</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-	<!-- Funfacts 1 -->
-	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1 col-12">
-					<div class="funfacts-scroll-wrapper">
-						<div class="funfacts-scroll" style="animation: scroll-left 5s linear infinite;">
-							<div class="funfacts__card funfacts__card--gr1 fun-size">
-								<div class="funfacts__icon">
-									<img src="/static/img/youtube-icon.svg">
-								</div>
-								<div class="funfacts__number">
-									<h4 class="funfacts__title"><b class="in-counter">7</b><b>K+
-										</b><span>Subscribers</span></h4>
-								</div>
-							</div>
+        <div id="app-content" class="opacity-0 transition-opacity duration-500 w-full md:pl-20">
+            <!-- Mobile Header -->
+            <header class="md:hidden bg-gray-800/80 backdrop-blur-sm sticky top-0 z-10">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center py-4">
 
-							<div class="funfacts__card funfacts__card--gr2 fun-size">
-								<div class="funfacts__icon">
-									<img src="/static/img/twitter-icon.svg">
-								</div>
-								<div class="funfacts__number">
-									<h4 class="funfacts__title"><b class="in-counter">5</b><b>K+
-										</b><span>Followers</span></h4>
-								</div>
-							</div>
+                        <!-- Logo -->
+                        <div class="flex items-center space-x-2">
+                            <img src="/static/img/logo-main.png" alt="Logo" style="height:30px; width:30px;">
+                        </div>
 
-							<div class="funfacts__card funfacts__card--gr1 fun-size">
-								<div class="funfacts__icon">
-									<img src="/static/img/tiktok-icon.svg">
-								</div>
-								<div class="funfacts__number">
-									<h4 class="funfacts__title"><b class="in-counter">3</b><b>K+
-										</b><span>Followers</span></h4>
-								</div>
-							</div>
+                        <!-- Hamburger -->
+                        <button id="menuToggle" class="text-white focus:outline-none">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
 
-							<div class="funfacts__card funfacts__card--gr2 fun-size">
-								<div class="funfacts__icon">
-									<img src="/static/img/instagram-icon.svg">
-								</div>
-								<div class="funfacts__number">
-									<h4 class="funfacts__title"><b class="in-counter">2</b><b>K+
-										</b><span>Followers</span></h4>
-								</div>
-							</div>
-						</div>
-					</div> <!-- end wrapper -->
-				</div>
-			</div>
-		</div>
-	</section>
+            <!-- Slide-in nav -->
+            <nav id="mobileMenu"
+                class="fixed top-0 right-0 h-full w-64 bg-gray-900 text-white transform translate-x-full transition-transform duration-300 ease-in-out z-20">
+                <div class="p-6 space-y-6">
+                    <!-- Close button -->
+                    <button id="menuClose" class="absolute top-4 right-4 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
 
-	<!-- We we operate -->
-	<div class="inflanar-hero__content ag-margin-carousol">
-		<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center; margin: 30px;">Ecosystem We
-			Operate
-			in</span>
-		<div class="blockchain-carosel-section" style="padding: 0 !important;">
-			<div class="carosel-wrapper">
-				<div class="carosel-track">
-					<!-- 6 blockchains x2 for infinite effect -->
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/eth.png" alt="Ethereum" />
-						<span>Ethereum</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/sol.png" alt="Solana" />
-						<span>Solana</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/pol.webp" alt="Polygon" />
-						<span>Polygon</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/bnb.png" alt="BNB Chain" />
-						<span>BNB Chain</span>
-					</div>
+                    <!-- Nav links -->
+                    <ul class="flex flex-col h-full py-4 space-y-2">
+                        <li class="px-5 py-3 mb-4">
+                            <a href="/" class="flex items-center space-x-2">
+                                <svg class="h-10 w-10 text-indigo-400 flex-shrink-0" viewBox="0 0 32 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- speed lines -->
+                                    <path d="M2 9h5v1H2V9zm0 3h4v1H2v-1zm0 3h3v1H2v-1z" />
 
+                                    <!-- trolley body (longer) -->
+                                    <path
+                                        d="M10 6h11c1 0 1.8.5 2.3 1.2l3 4.5c.3.4.4.8.4 1.3v4a1 1 0 0 1-1 1h-.8a3 3 0 0 1-6 0h-7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" />
 
+                                    <!-- wheels -->
+                                    <circle cx="13" cy="18" r="1.8" />
+                                    <circle cx="21" cy="18" r="1.8" />
+                                </svg>
 
-					<!-- 6 blockchains x2 for infinite effect -->
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/eth.png" alt="Ethereum" />
-						<span>Ethereum</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/sol.png" alt="Solana" />
-						<span>Solana</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/pol.webp" alt="Polygon" />
-						<span>Polygon</span>
-					</div>
-					<div class="carosel-item carosel-position">
-						<img src="/static/img/blockchain/bnb.png" alt="BNB Chain" />
-						<span>BNB Chain</span>
-					</div>
+                                <!--<svg class="h-10 w-10 text-indigo-400 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"/></svg>-->
+                                <span class="nav-text text-xl font-extrabold text-white whitespace-nowrap">Cartty
+                                    Logistics</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center py-3 px-6 text-indigo-400 bg-gray-900">
+                                <i data-feather="home" class="h-6 w-6 flex-shrink-0"></i>
+                                <span class="nav-text ml-4 font-semibold whitespace-nowrap">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="services"
+                                class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                                <i data-feather="grid" class="h-6 w-6 flex-shrink-0"></i>
+                                <span class="nav-text ml-4 font-semibold whitespace-nowrap">Services</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about-us"
+                                class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                                <i data-feather="info" class="h-6 w-6 flex-shrink-0"></i>
+                                <span class="nav-text ml-4 font-semibold whitespace-nowrap">About</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact-us"
+                                class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200">
+                                <i data-feather="phone" class="h-6 w-6 flex-shrink-0"></i>
+                                <span class="nav-text ml-4 font-semibold whitespace-nowrap">Contact</span>
+                            </a>
+                        </li>
+                        <li class="mt-auto">
+                            <a href="track"
+                                class="flex items-center py-3 px-6 text-gray-300 hover:bg-indigo-600 hover:text-white rounded-r-full transition-colors duration-200" 
+                                >
+                                <i data-feather="compass" class="h-6 w-6 flex-shrink-0"></i>
+                                <span class="nav-text ml-4 font-semibold whitespace-nowrap">Track Shipment</span>
+                            </a>
+                        </li>
+                    </ul>
 
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End -->
+                </div>
+            </nav>
 
+            <script>
+                const menuToggle = document.getElementById('menuToggle');
+                const menuClose = document.getElementById('menuClose');
+                const mobileMenu = document.getElementById('mobileMenu');
 
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileMenu.classList.add('translate-x-0');
+                });
 
-	<!-- We we operate -->
-	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
-		<div class="inflanar-hero__content" style="margin: 70px 0;">
-			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">Our Services</span>
-			<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">
-				Hype Engine.
-			</h1>
-			<h1 class="inflanar-hero__title"
-				style="font-family: sans-serif; font-size: 50px; text-align: center; color: brown; margin-top: -20px;">
-				Growth Machine.
-			</h1>
-		</div>
-
-		<div class="container" style="margin-bottom: 70px;">
-			<div class="row ag-margin">
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="200">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-location-dot"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								Brand Positioning
-							</h5>
-							<span class=" inflanar-regular-font">
-								Build a brand narrative that sticks and scale
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="400">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-rocket"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								Precise KOL Execution
-							</h5>
-							<span class=" inflanar-regular-font">
-								Right KOLs, right timing. Perfect Execution.
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="600">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-comment"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								Hype Team
-							</h5>
-							<span class=" inflanar-regular-font">
-								UGC, Reply Guy, KOL & engagement team spark a hype snowball.
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- Second row -->
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="800">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-heart"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								Algoritmic Content
-							</h5>
-							<span class=" inflanar-regular-font">
-								Creative posts for max reach & X algoritmic domiinance.
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="1000">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-lightbulb"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								TG & DC Communities
-							</h5>
-							<span class=" inflanar-regular-font">
-								Structure, engage, and grow your web3 community.
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-12 mg-top-30" data-aos="fade-up" data-aos-delay="1200">
-					<div class="inflanar-hcard inflanar-hcard--one">
-						<div class="inflanar-hcard__img" style="padding: 50px; height: 300px;">
-							<div class="agency-services agency-color">
-								<i class="fas fa-chart-bar"></i>
-							</div>
-							<h5 style="font-family: sans-serif;">
-								Smart Marketing
-							</h5>
-							<span class=" inflanar-regular-font">
-								Strategic plays that turn token flow into profit flow
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End -->
-
-	<!-- Success -->
-	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
-		<div class="inflanar-hero__content" style="margin-top: 50px;">
-			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">How do we succeed</span>
-			<h1 class="inflanar-hero__title" style="font-family: sans-serif; font-size: 50px; text-align: center;">
-				Strategize. Execute
-			</h1>
-		</div>
-	</section>
-
-	<!-- Funfacts 1 -->
-	<section class="pd-top-30 pd-btm-10 inflanar-ohidden" style="margin-top: 70px;">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="">
-						<div class="funfacts-scroll funfacts-scroll-wrapper">
-							<div>
-								<div class="funfacts__card fun-size"
-									style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-									<img src="/static/img/blockchain/plan.png">
-
-								</div>
-								<h3 style="font-family: sans-serif; margin-top: 30px;">
-									Plan
-								</h3>
-								<span class=" inflanar-regular-font">
-									Book a call and let's craft the strategy for you
-								</span>
-							</div>
-
-							<div>
-								<div class="funfacts__card fun-size"
-									style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-									<img src="/static/img/blockchain/algo.png">
-								</div>
-								<h3 style="font-family: sans-serif; margin-top: 30px; text-align: center;">
-									Algorithm Growth
-								</h3>
-								<span class=" inflanar-regular-font" style="text-align: center;">
-									Hand us over your account, let's fuel the algorithm
-								</span>
-							</div>
+                menuClose.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    mobileMenu.classList.remove('translate-x-0');
+                });
+            </script>
 
 
-							<div>
-								<div class="funfacts__card fun-size"
-									style="padding: 0px; box-shadow: 0px 0px 40px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
-									<img src="/static/img/blockchain/algo.png">
-								</div>
-								<h3 style="font-family: sans-serif; margin-top: 30px; text-align: end;">
-									Impact
-								</h3>
-								<span class=" inflanar-regular-font"
-									style="display: flex; flex-direction: row-reverse;">
-									Now watch the impact.
-								</span>
-							</div>
-						</div>
-					</div> <!-- end wrapper -->
-				</div>
-			</div>
-		</div>
-	</section>
+            <!--<header class="md:hidden bg-gray-800/80 backdrop-blur-sm sticky top-0 z-10">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center py-4">
+                        <div class="flex items-center space-x-2">
+                            <img src="/uploads/logo.png" style="height:50px; width:100px;">
+                            <!--<span class="text-xl font-extrabold text-white">Cartty Logistics</span>
+                        </div>
+                    </div>
+                </div>
+            </header>-->
+
+            <!-- Main Content -->
+            <main>
+                <!-- Hero Section -->
+                <section class="hero-bg min-h-[70vh] md:min-h-screen flex items-center"
+                    style="background-image: url('https://thumbs.dreamstime.com/b/logistics-truck-plane-global-map-blue-background-international-customs-day-banner-logistics-truck-plane-global-map-358322335.jpg');">
+                    <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <div class="max-w-3xl mx-auto">
+                            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                                Global Logistics, <span class="text-indigo-400">Simplified.</span>
+                            </h1>
+                            <p class="text-lg md:text-xl text-text-primary mb-8">
+                                Navigating the complexities of global trade with speed, reliability, and unparalleled
+                                service. Your business, delivered.
+                            </p>
+                            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                                <a href="track.html"
+                                    class="bg-indigo-600 text-white font-semibold px-8 py-4 rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 flex items-center justify-center gap-2"
+                                    style="background: #fd7f00;">
+                                    <i data-feather="compass" class="h-5 w-5"></i>
+                                    <span>Track Your Shipment</span>
+                                </a>
+                                <a href="contact.html#quote-form"
+                                    class="bg-gray-700/50 backdrop-blur-sm border border-gray-600 text-white font-semibold px-8 py-4 rounded-xl hover:bg-gray-700 transition-colors duration-300 flex items-center justify-center gap-2">
+                                    <i data-feather="file-text" class="h-5 w-5"></i>
+                                    <span>Register a Product</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Section -->
+                <section class="bg-gray-800 py-12">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-bold text-white">1.2M+</h3>
+                                <p class="text-text-secondary">Parcels Delivered</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-bold text-white">150+</h3>
+                                <p class="text-text-secondary">Countries Reached</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-bold text-white">99.7%</h3>
+                                <p class="text-text-secondary">On-Time Delivery</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-bold text-white">25k+</h3>
+                                <p class="text-text-secondary">Satisfied Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services Section -->
+                <section class="py-16 md:py-24">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-3xl mx-auto mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Services</h2>
+                            <p class="mt-4 text-text-secondary">We provide a full spectrum of logistics services to
+                                ensure your supply chain is efficient, robust, and reliable.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="card rounded-2xl overflow-hidden group">
+                                <img src="https://aircargoweek.com/wp-content/uploads/2021/02/Screenshot-2021-02-23-at-09.38.10.png"
+                                    alt="Air Freight"
+                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-white mb-2">Air Freight</h3>
+                                    <p class="text-text-secondary text-sm">When time is critical, our global air freight
+                                        services provide the speed and reliability you need.</p>
+                                </div>
+                            </div>
+                            <div class="card rounded-2xl overflow-hidden group">
+                                <img src="https://cdn.businessday.ng/2020/07/sea-freight.jpg" alt="Ocean Freight"
+                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-white mb-2">Ocean Freight</h3>
+                                    <p class="text-text-secondary text-sm">Cost-effective and comprehensive ocean
+                                        freight solutions for your large-scale shipments.</p>
+                                </div>
+                            </div>
+                            <div class="card rounded-2xl overflow-hidden group">
+                                <img src="https://www.seaspace-int.com/wp-content/uploads/2021/02/Warehouse-and-Storage-Facilities.png"
+                                    alt="Warehousing"
+                                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-white mb-2">Warehousing</h3>
+                                    <p class="text-text-secondary text-sm">Secure, scalable, and strategically located
+                                        warehousing to optimize your inventory management.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Youtube Section -->
+                <!-- <section class="py-20">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8" >
+                        <div class="bg-indigo-600 rounded-2xl p-10 text-center shadow-2xl shadow-indigo-500/30" 
+                            style="background: #fd7f00;">
+
+                            <!-- Responsive wrapper 
+                            <div class="relative w-full"
+                                style="padding-top:56.25%; border-radius:0.75rem; overflow:hidden;"> 
+
+                                 Thumbnail with play overlay 
+                                <div id="videoOverlay"
+                                    class="absolute inset-0 flex items-center justify-center cursor-pointer z-10">
+                                    <img src="https://img.youtube.com/vi/06dV9txztKY/hqdefault.jpg"
+                                        alt="Video Thumbnail" class="absolute inset-0 w-full h-full object-cover">
+
+                                    Dark overlay 
+                                    <div class="absolute inset-0 bg-black/40"></div>
+
+                                    Play button 
+                                    <div
+                                        class="relative z-20 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                                        <svg class="w-10 h-10 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                Hidden iframe until clicked 
+                                <iframe id="videoFrame" class="absolute top-0 left-0 w-full h-full border-0 hidden"
+                                    src="" title="YouTube video player"
+                                    allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+                                </iframe>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+ -->
+                <script>
+                    document.getElementById("videoOverlay").addEventListener("click", function () {
+                        const iframe = document.getElementById("videoFrame");
+                        iframe.src = "https://www.youtube.com/embed/06dV9txztKY?autoplay=1&mute=0&rel=0";
+                        iframe.classList.remove("hidden");
+                        this.remove(); // completely remove the overlay & thumbnail
+                    });
+                </script>
 
 
 
-	<section class="pd-top-30 pd-btm-10 inflanar-ohidden">
-		<div class="inflanar-hero__content" style="margin-top: 70px;">
-			<span class="inflanar-hero__sub inflanar-regular-font" style="text-align: center;">Packages</span>
-			<h1 class="inflanar-hero__title"
-				style="font-family: sans-serif; font-size: 50px; text-align: center; margin-bottom: 30px;">
-				Top talent with
-				<br>premium quality.
-			</h1>
-		</div>
-		<div class="container" style="margin-top: 50px;">
-			<div class="row align-items-start">
-				<!-- Basic Plan -->
-				<div class="col-lg-4 col-md-6 mb-4 ag-height">
-					<div class="inflanar-service" style="padding: 30px; height: 100%;">
-						<div class="inflanar-section__head mg-btm-20">
-							<div class="agency-services agency-color"><i class="fas fa-home"></i></div>
-							<h5 style="font-family: sans-serif; font-weight: lighter;">Basic</h5>
-							<span class="inflanar-regular-font">Basic Web3 Project maintaining steady growth.</span>
-						</div>
-						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
-							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Get a Free
-								Proposal</a>
-						</div>
-						<ul class="package-checklist mt-3">
-							<li><span class="check-circle">✔</span> Basic Content Creation</li>
-							<li><span class="check-circle">✔</span> Basic Telegram or Discord Support</li>
-							<li><span class="check-circle">✔</span> Engagement Team Integrate</li>
-							<li><span class="check-circle">✔</span> Reply Guy Integrate</li>
-							<li><span class="check-circle">✔</span> Basic Brand Consulting</li>
-							<li><span class="check-circle">✔</span> Weekly Meeting</li>
-							<li><span class="check-circle">✔</span> Detailed Monthly Reports</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Premium Plan -->
-				<div class="col-lg-4 col-md-6 mb-4 ag-height">
-					<div class="inflanar-service" style="padding: 30px; height: 100%;">
-						<div class="inflanar-section__head mg-btm-20">
-							<div class="agency-services agency-color"><i class="fas fa-crown"></i></div>
-							<h5 style="font-family: sans-serif; font-weight: lighter;">Premium+</h5>
-							<span class="inflanar-regular-font">Growing Web3 Projects seeking stronger
-								communities.</span>
-						</div>
-						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
-							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Get a Free
-								Proposal</a>
-						</div>
-						<ul class="package-checklist mt-3">
-							<li> Everything in Basic and:</li>
-							<li><span class="check-circle">✔</span> Full Access Gold Tick</li>
-							<li><span class="check-circle">✔</span> Hype Engine Activation (KOL Marketing included)</li>
-							<li><span class="check-circle">✔</span> X Algorithm Consulting</li>
-							<li><span class="check-circle">✔</span> Unlimited Content Creation</li>
-							<li><span class="check-circle">✔</span> Tailor-Made Marketing Strategy</li>
-							<li><span class="check-circle">✔</span> Premium+ Brand Consulting</li>
-							<li><span class="check-circle">✔</span> Customized AI Agent Creation</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Customized Plan -->
-				<div class="col-lg-4 col-md-12 mb-4">
-					<div class="inflanar-service" style="padding: 30px; height: 100%;">
-						<div class="inflanar-section__head mg-btm-20">
-							<div class="agency-services agency-color"><i class="fas fa-calendar"></i></div>
-							<h5 style="font-family: sans-serif; font-weight: lighter;">Customized</h5>
-							<span class="inflanar-regular-font">Learn more how we work and how we can help you and your
-								business.</span>
-						</div>
-						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
-							<a href="/register" class="inflanar-btn inflanar-btn--header agency-color">Book a call</a>
-						</div>
-					</div>
-
-					<!-- Nested Plan: Control Growth Metric -->
-					<div class="inflanar-service mt-4" style="padding: 30px; height: 100%;">
-						<div class="inflanar-section__head mg-btm-20">
-							<div class="agency-services agency-color"><i class="fas fa-cog"></i></div>
-							<h5 style="font-family: sans-serif; font-weight: lighter;">Control growth metric with Scrap3
-							</h5>
-							<span class="inflanar-regular-font">Seeking a different scope of work? </span>
-						</div>
-						<div class="inflanar-header__button" style="display: flex; gap: 15px; justify-content: center;">
-							<a href="/" class="inflanar-btn inflanar-btn--header agency-color">Start Now</a>
-						</div>
-						<div class="inflanar-regular-font mt-2">
-							We created a tool for team management
-						</div>
-						<ul class="package-checklist mt-2">
-							<li><span class="check-circle">✔</span> Hire your own team or freelancers</li>
-							<li><span class="check-circle">✔</span> Control the metrics</li>
-							<li><span class="check-circle">✔</span> Pay when satisfied</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
+                <!--<section class="py-20">
+                  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-indigo-600 rounded-2xl p-10 text-center shadow-2xl shadow-indigo-500/30">
+                      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-xl">
+                        <iframe
+                          class="absolute top-0 left-0 w-full h-full"
+                          src="https://www.youtube.com/embed/06dV9txztKY?autoplay=1&amp;mute=1&amp;rel=0"
+                          title="YouTube video player"
+                          frameborder="0"
+                          allow="autoplay; encrypted-media; picture-in-picture"
+                          allowfullscreen>
+                        </iframe>
+                      </div>
+                    </div>
+                  </div>
+                </section>-->
 
 
-	<!-- Brands -->
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="inflanar-brands inflanar-bg-cover inflanar-section-shape9">
-						<div class="row align-items-center  inflanar-row-gap-80">
-							<div class="col-lg-6 col-12 mg-top-30">
-								<!-- Section TItle -->
-								<div class="inflanar-section__head inflanar-section__head--brands">
-									<h2 class="inflanar-section__title mg-btm-10">We Have Partners From Big Brands <span
-											class="inflanar-scolor">243+ Clients</span> </h2>
-									<p style="font-family: sans-serif;"> Web3 Projects thrive on
-										community engagements. We help them get it through authentic community led
-										growth.</p>
-									<div class="inflanar-brands-btn mg-top-40">
-										<a href="register.html"
-											class="inflanar-btn inflanar-btn__secondary inflanar-btn__big system-font"><span>Start
-												Campaigning!</span></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="400">
-								<div class="row">
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand1.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand2.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand3.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand4.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand5.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand6.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand7.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand8.svg"></a>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-4 col-6 mg-top-30">
-										<div class="brands__single">
-											<a href="#"><img src="/static/img/in-brand9.svg"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Brands -->
+                <!-- Testimonials Section -->
+                <section class="py-16 md:py-24 bg-gray-800">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-3xl mx-auto mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">What Our Clients Say</h2>
+                            <p class="mt-4 text-text-secondary">We're proud to be a trusted partner for businesses
+                                worldwide. Here's what they think of our service.</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="card rounded-2xl p-6 flex flex-col">
+                                <p class="text-text-secondary italic">"Cartty Logistics has transformed our supply
+                                    chain. Their reliability and communication are second to none. A true partner."</p>
+                                <div class="flex items-center mt-6">
+                                    <img src="https://placehold.co/100x100/4a5568/ffffff?text=KM" alt="Client"
+                                        class="h-12 w-12 rounded-full object-cover">
+                                    <div class="ml-4">
+                                        <p class="font-bold text-white">Klaus Müller</p>
+                                        <p class="text-sm text-text-secondary">CEO, Berlin Innovations</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-2xl p-6 flex flex-col bg-indigo-900/50 border-indigo-500" style="background: #fd7e006e;">
+                                <p class="text-white italic">"The transparency provided by their tracking platform is a
+                                    game-changer. We always know where our shipments are, every step of the way."</p>
+                                <div class="flex items-center mt-6">
+                                    <img src="https://placehold.co/100x100/4a5568/ffffff?text=ID" alt="Client"
+                                        class="h-12 w-12 rounded-full object-cover">
+                                    <div class="ml-4">
+                                        <p class="font-bold text-white">Isabelle Dubois</p>
+                                        <p class="text-sm text-indigo-300">Logistics Head, Parisian Fashion Group</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-2xl p-6 flex flex-col">
+                                <p class="text-text-secondary italic">"Moving to Cartty Logistics was the best decision
+                                    for our international logistics. Their team is professional, proactive, and always
+                                    helpful."</p>
+                                <div class="flex items-center mt-6">
+                                    <img src="https://placehold.co/100x100/4a5568/ffffff?text=MR" alt="Client"
+                                        class="h-12 w-12 rounded-full object-cover">
+                                    <div class="ml-4">
+                                        <p class="font-bold text-white">Marco Ricci</p>
+                                        <p class="text-sm text-text-secondary">Founder, Milan Fine Foods</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-	<!-- Contact Us -->
-	<section class="inflanar-contact inflaner-inner-page pd-top-90 pd-btm-120" id="contact">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5 col-12 mg-top-30">
-					<div class="inflanar-contact__box inflanar-bg-cover inflanar-section-shape17">
-						<!-- Contact heading -->
-						<div class="inflanar-contact__heading">
-							<h2 class="inflanar-contact-form__title m-0">Contact Info</h2>
-							<p class="inflanar-contact__htext system-font">Our Contact Info and we' ll respond as soon
-								as possible
-							</p>
-						</div>
-						<div class="row">
-							<div class="col-xl-6 col-lg-12 col-md-6 col-12 mg-top-30">
-								<!-- Single Contact -->
-								<div class="inflanar-contact__single">
-									<div class="inflanar-contact__icon">
-										<i class="fas fa-phone-alt"></i>
-									</div>
-									<div class="inflanar-contact__content">
-										<p class="inflanar-contact__title system-font">
-											<a href="tel:+234.........">+234........</a>
-											<a href="tel:+00 000 000 0000">TG: Scrap3xyz</a>
-										</p>
-									</div>
-								</div>
-								<!-- End Single Contact -->
-							</div>
-							<div class="col-xl-6 col-lg-12 col-md-6 col-12 mg-top-30">
-								<!-- Single Contact -->
-								<div class="inflanar-contact__single">
-									<div class="inflanar-contact__icon">
-										<i class="fas fa-envelope"></i>
-									</div>
-									<div class="inflanar-contact__content">
-										<p class="inflanar-contact__title system-font">
-											<a
-												href="https://quomodothemes.website/cdn-cgi/l/email-protection#99f7f8e3f8f2f8f1f8ebd9fef4f8f0f5b7faf6f4"><span
-													class="__cf_email__"
-													data-cfemail="0967687368626861687b496e64686065276a6664">info@scrap3.xyz</span></a>
-											<a
-												href="https://quomodothemes.website/cdn-cgi/l/email-protection#c8a1a6aea7b1a7bdba88afa5a9a1a4e6aba7a5"><span
-													class="__cf_email__"
-													data-cfemail="d0b9beb6bfa9bfa5a290b7bdb1b9bcfeb3bfbd">X:
-													@scrap3xyz</span></a>
-										</p>
+                <!-- CTA Section -->
+                <section class="py-20">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="bg-indigo-600 rounded-2xl p-10 text-center shadow-2xl shadow-indigo-500/30"
+                            style="background: #fd7f00;">
+                            <h2 class="text-3xl font-bold text-white mb-4">Ready to Optimize Your Logistics?</h2>
+                            <p class="text-indigo-200 max-w-2xl mx-auto mb-8">Let's discuss how Cartty Logistics can
+                                streamline your supply chain, reduce costs, and help your business grow. Get a free,
+                                no-obligation quote today.</p>
+                            <a href="contact.html"
+                                class="bg-white text-indigo-600 font-semibold px-8 py-4 rounded-xl hover:bg-gray-200 transition-colors duration-300"
+                                    style="color: #fd7f00;">
+                                Register a Product
+                            </a>
+                        </div>
+                    </div>
+                </section>
 
-									</div>
-								</div>
-								<!-- End Single Contact -->
-							</div>
-							<div class="col-12 mg-top-30">
-								<!-- Single Contact -->
-								<div class="inflanar-contact__single">
-									<div class="inflanar-contact__icon">
-										<i class="fa-solid fa-location-dot"></i>
-									</div>
-									<div class="inflanar-contact__content">
-										<p class="inflanar-contact__title system-font">
-											Dhaka | Remote
-										</p>
+                <!-- Footer -->
+                <footer class="bg-gray-800 border-t border-gray-700">
+                    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                            <div>
+                                <h4 class="font-bold text-white mb-4">Cartty Logistics</h4>
+                                <p class="text-sm text-text-secondary">Your trusted partner in global logistics.
+                                    Delivering excellence, one shipment at a time.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li><a href="about.html" class="text-text-secondary hover:text-white">About Us</a>
+                                    </li>
+                                    <li><a href="services.html"
+                                            class="text-text-secondary hover:text-white">Services</a></li>
+                                    <li><a href="track.html" class="text-text-secondary hover:text-white">Track
+                                            Shipment</a></li>
+                                    <li><a href="contact.html" class="text-text-secondary hover:text-white">Contact
+                                            Us</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-4">Contact Info</h4>
+                                <ul class="space-y-2 text-sm text-text-secondary">
+                                    <li class="flex items-start"><i data-feather="map-pin"
+                                            class="h-4 w-4 mr-2 mt-1"></i><span>Burwood Road, Torrington, Devon,
+                                            EX38</span></li>
+                                    <li class="flex items-center"><i data-feather="phone"
+                                            class="h-4 w-4 mr-2"></i><span>+44 741 860 8210</span></li>
+                                    <li class="flex items-center"><i data-feather="mail"
+                                            class="h-4 w-4 mr-2"></i><span>contact@Carttylogistics.com</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-4">Follow Us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-text-secondary hover:text-white"><i
+                                            data-feather="twitter"></i></a>
+                                    <a href="#" class="text-text-secondary hover:text-white"><i
+                                            data-feather="facebook"></i></a>
+                                    <a href="#" class="text-text-secondary hover:text-white"><i
+                                            data-feather="linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-text-secondary">
+                            <p>&copy; 2025 Cartty Logistics. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </footer>
 
-									</div>
-								</div>
-								<!-- End Single Contact -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-7 col-12 mg-top-30">
-					<!-- Comments Form -->
-					<div class="inflanar-comments-form inflanar-comments-form--reviews">
-						<p class="inflanar-contact__htext system-font">Want your Campaign life on Scrap3?</p>
-						<h3 class="inflanar-contact-form__title m-0">Sign Up or Send a Message</h3>
-						<form action="#">
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-12">
-									<div class="form-group inflanar-form-input">
-										<label>Name*</label>
-										<input class="ecom-wc__form-input" type="text" name="f_name"
-											placeholder="Garikoka Thomash" required="required">
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6 col-12">
-									<div class="form-group inflanar-form-input">
-										<label>Email*</label>
-										<input class="ecom-wc__form-input" type="text" name="email"
-											placeholder="infoyour@gmail.com" required="required">
-									</div>
-								</div>
-								<div class="col-12">
-									<div class="form-group inflanar-form-input">
-										<label>Message*</label>
-										<textarea class="ecom-wc__form-input" name="f_name"
-											placeholder="Write your message"></textarea>
-									</div>
-								</div>
-								<div class="col-12 mg-top-20">
-									<button type="submit" class="inflanar-btn system-font"><span>Contact
-											Us</span></button>
-								</div>
-							</div>
-						</form>
-					</div>
-					<!-- End Comments Form -->
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Contact Us -->
+            </main>
+        </div>
+    </div>
 
-	<!-- Faq Area -->
-	<section class="inflanar-bg-cover pd-top-90 pd-btm-120 inflanar-ohidden">
-		<div class="container inflanar-container-medium">
-			<div class="row inflanar-container-medium__row align-items-center">
-				<div class="col-lg-5 col-12 mg-top-30">
-					<!-- Section TItle -->
-					<div class="inflanar-section__head mg-btm-50">
-						<span class="inflanar-section__badge inflanar-primary-color m-0" data-aos="fade-in"
-							data-aos-delay="300">
-							<span>Our Faq’s</span>
-						</span>
-						<h2 class="inflanar-section__title mg-btm-20" data-aos="fade-in" data-aos-delay="400">Got any
-							questions?</h2>
-						<span class=" inflanar-regular-font">
-							We've got answers.
-						</span>
-					</div>
-					<!-- Support Img -->
-					<div class="inflanar-support-img" data-aos="fade-up" data-aos-delay="200">
-						<img src="/static/img/in-faq-img.png" alt="#">
-					</div>
-					<!-- End Support Img -->
-				</div>
-				<div class="col-lg-7 col-12 mg-top-30">
-					<div class="inflanar-accordion accordion accordion-flush" id="inflanar-accordion">
-						<!-- End Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-1">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse1">What is Web3
-									Marketing?</button>
-							</h2>
-							<div id="ac-collapse1" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									Web3 marketing focuses on decentralized communities, token economies, and
-									blockchain-based platforms, utilizing influencer collaborations and community
-									incentives.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single active mg-top-20">
-							<h2 class="accordion-header" id="inflanart-3">
-								<button class="accordion-button   inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse2">How do you select KOLs?
-
-								</button>
-							</h2>
-							<div id="ac-collapse2" class="accordion-collapse collapse show"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									We analyze audience demographics, engagement, authenticity, and campaign goals to
-									ensure the best fit for your brand.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-2">
-								<button class="accordion-button collapsed  inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse3" aria-expanded="false">What
-									platform do you use for your campaign?</button>
-							</h2>
-							<div id="ac-collapse3" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									We leverage Twitter, Discord, Telegram, YouTube, and Web3-native platforms for
-									community engagement and promotions.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-4">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse4">How do you grow web3
-									community?</button>
-							</h2>
-							<div id="ac-collapse4" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									Through viral campaigns, strategic partnerships, influencer outreach, and active
-									community engagement on key platforms.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-5">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse5">Do you offer paid
-									advertizing services?</button>
-							</h2>
-							<div id="ac-collapse5" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									Yes, we run targeted ads on Web3-friendly platforms, including Twitter, Reddit, and
-									crypto-specific networks.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-5">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse5">How do you measure
-									marketing Success?</button>
-							</h2>
-							<div id="ac-collapse5" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									We track KPIs like engagement rate, community growth, conversion rate, token sales,
-									and overall ROI.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-5">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse5">What industry do you work
-									with?</button>
-							</h2>
-							<div id="ac-collapse5" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									We specialize in crypto, DeFi, NFTs, GameFi, and blockchain-based projects.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-						<!-- Single Accordion -->
-						<div class="accordion-item inflanar-accordion__single mg-top-20">
-							<h2 class="accordion-header" id="inflanart-5">
-								<button class="accordion-button collapsed inflanar-accordion__heading" type="button"
-									data-bs-toggle="collapse" data-bs-target="#ac-collapse5">Can you help with
-									influencers partnerships?</button>
-							</h2>
-							<div id="ac-collapse5" class="accordion-collapse collapse"
-								data-bs-parent="#inflanar-accordion">
-								<div class="accordion-body inflanar-accordion__body">
-									Yes, we connect brands with KOLs who align with their vision and marketing goals.
-								</div>
-							</div>
-						</div>
-						<!-- End Single Accordion -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Faq Area -->
+    <!-- Mobile Floating Action Button Menu -->
+    <div class="fixed md:hidden bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md px-4 pb-4 z-20">
+        <div class="relative flex items-center justify-center">
+            <!-- Menu Items -->
+            <div id="fab-menu-items"
+                class="fab-menu-items absolute bottom-0 flex justify-center items-end gap-4 mb-20 opacity-0 transform scale-90 pointer-events-none">
+                <a href="#"
+                    class="fab-menu-item flex flex-col items-center text-text-secondary hover:text-white transition-all transform hover:-translate-y-1"
+                    style="transition-delay: 0.2s">
+                    <div class="bg-white rounded-full p-3 shadow-lg"><i data-feather="home"
+                            class="h-6 w-6 text-indigo-600"></i></div>
+                    <span class="text-xs font-semibold mt-1">Home</span>
+                </a>
+                <a href="services.html"
+                    class="fab-menu-item flex flex-col items-center text-text-secondary hover:text-white transition-all transform hover:-translate-y-1"
+                    style="transition-delay: 0.1s">
+                    <div class="bg-white rounded-full p-3 shadow-lg"><i data-feather="grid"
+                            class="h-6 w-6 text-indigo-600"></i></div>
+                    <span class="text-xs font-semibold mt-1">Services</span>
+                </a>
+                <a href="about.html"
+                    class="fab-menu-item flex flex-col items-center text-text-secondary hover:text-white transition-all transform hover:-translate-y-1"
+                    style="transition-delay: 0.1s">
+                    <div class="bg-white rounded-full p-3 shadow-lg"><i data-feather="info"
+                            class="h-6 w-6 text-indigo-600"></i></div>
+                    <span class="text-xs font-semibold mt-1">About</span>
+                </a>
+                <a href="contact.html"
+                    class="fab-menu-item flex flex-col items-center text-text-secondary hover:text-white transition-all transform hover:-translate-y-1"
+                    style="transition-delay: 0.2s">
+                    <div class="bg-white rounded-full p-3 shadow-lg"><i data-feather="phone"
+                            class="h-6 w-6 text-indigo-600"></i></div>
+                    <span class="text-xs font-semibold mt-1">Contact</span>
+                </a>
+            </div>
+            <!-- Main Button -->
+            <!-- <button id="fab-menu-button" class="fab-menu-button relative bg-indigo-600 text-white rounded-full h-16 w-16 flex items-center justify-center shadow-xl hover:shadow-2xl hover:shadow-indigo-500/50 hover:bg-indigo-700">
+                <i data-feather="plus" class="h-8 w-8 transition-transform duration-300"></i>
+            </button>-->
+        </div>
+    </div>
 
 
-	<!-- Footer CTA -->
-	<section class="footer-cta inflanar-bg-cover section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="footer-cta__inner inflanar-scolor-bg">
-						<div class="footer-cta__content">
-							<h3 class="footer-cta__title text-white">Community Powered Growth for Web3 Projects</h3>
-							<a href="#" class="inflanar-btn inflanar-btn__third system-font"><span>Join
-									Community!</span></a>
-						</div>
+    <script>
+        // --- Feather Icons ---
+        feather.replace();
 
-						<div class="footer-cta__img">
-							<div class="inflanar-anim-shape4">
-								<img src="/static/img/infmarket.webp"
-									style="height: 300px; width: 300px; margin-left: 200px;">
-							</div>
-							<div class="inflanar-scard inflanar-scard--3 inflanar-anim-shape7">
-								<img src="/static/img/in-s-icon1.svg">
-							</div>
-							<div class="inflanar-scard inflanar-scard--4 inflanar-anim-shape6">
-								<img src="/static/img/in-s-icon2.svg">
-							</div>
-							<div class="inflanar-scard inflanar-scard--5 inflanar-anim-shape5">
-								<img src="/static/img/in-s-icon3.svg">
-							</div>
+        // --- PRELOADER SCRIPT ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const content = document.getElementById('app-content');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                content.style.opacity = '1';
+                setTimeout(() => preloader.style.display = 'none', 500);
+            }, 500);
+        });
 
-							<div class="inflanar-scard inflanar-scard--1 inflanar-anim-shape8"
-								style="margin-left: 500px;">
-								<img src="/static/img/in-scard1.png">
-							</div>
-
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Footer CTA -->
-
-	<!-- Footer -->
-	<footer class="footer-area footer-area--v2 p-relative">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="footer-top-inner pd-top-30 pd-btm-100">
-						<div class="row">
-							<div class="col-lg-4 col-md-6 col-12">
-								<!-- Footer Widget -->
-								<div class="footer-about-widget">
-									<div class="footer-logo inflanar-header__logo">
-										<a class="logo" href="index.html"><img src="/static/img/scrap3-logo-black.png"
-												alt="#"></a>
-									</div>
-									<h4 class="footer-about-widget__title">Want to Create Something <span>Great
-											Together?</span></h4>
-									<div class="footer-get-touch">
-										<p>Get in Touch.. <a href="index.html"><span class="__cf_email__"
-													data-cfemail="e088858c8c8fa091958f8d8f848f898e868fce838f8d">info@Scrap3.xyz</span></a>
-										</p>
-									</div>
-
-								</div>
-								<!-- End Footer Widget -->
-							</div>
-							<div class="col-lg-4 col-md-6 col-12">
-								<!-- Footer Widget -->
-								<div class="single-widget footer-useful-links">
-									<h3 class="widget-title">Quick Links</h3>
-									<ul class="footer__list list-none">
-										<li class="active"><a href="index.html">Home</a></li>
-										<li><a href="#about">About</a></li>
-										<li><a href="#choose">Why Choose Us</a></li>
-										<li><a href="#how_it_works">How it Works</a></li>
-										<li><a href="#campaing">Campaings</a></li>
-										<li><a href="#testimonials">Testimonials</a></li>
-										<li><a href="#contact">Advertize With Us</a></li>
-									</ul>
-								</div>
-								<!-- End Footer Widget -->
-							</div>
-							<div class="col-lg-4 col-md-6 col-12">
-								<!-- Footer Widget -->
-								<div class="single-widget footer-contact">
-									<h3 class="widget-title">Working Hour</h3>
-									<div class="f-contact__form-top">
-										<ul class="f-contact-list list-none">
-											<li>Mon - Fri: 7.00am - 6.00pm</li>
-											<li>Sat: 7.00am - 6.00pm</li>
-										</ul>
-									</div>
-								</div>
-								<!-- End Footer Widget -->
-
-								<!-- Footer Widget -->
-								<div class="single-widget footer-contact mg-top-30">
-									<h3 class="widget-title">Our Location</h3>
-									<div class="f-contact__form-top">
-										<p>Dhaka | Remote
-										</p>
-									</div>
-								</div>
-								<!-- End Footer Widget -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Copyright -->
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="copyright__inner">
-							<!-- Copyright Text -->
-							<p class="copyright-text">Copyright @2023 All rights reserved <a href="#"
-									target="_blank">Scrap3 Team</a></p>
-							<!-- Social -->
-							<ul class="inflanar-social inflanar-social__v2">
-								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-twitter"></i></a></li>
-								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-behance"></i></a></li>
-								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-instagram"></i></a></li>
-								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-linkedin"></i></a></li>
-								<li><a href="https://x.com/scrap3xyz"><i class="fa-brands fa-facebook-f"></i></a></li>
-							</ul>
-							<!-- End Social -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Copyright -->
-	</footer>
-	<!-- End Footer -->
-
-	<!-- Scrool Top -->
-	<a href="#" class="scrollToTop"><img src="/static/img/in-scroll-up.svg"></a>
-
-	<!-- Jquery JS -->
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="/static/js/jquery.min.js"></script>
-	<script src="/static/js/jquery-migrate.js"></script>
-	<script src="/static/js/jquery-ui.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="/static/js/bootstrap.min.js"></script>
-	<!-- Aos JS -->
-	<script src="/static/js/aos.min.js"></script>
-	<!-- CK Editor JS -->
-	<script src="/static/js/ckeditor.min.js"></script>
-	<!-- Select2 JS-->
-	<script src="/static/js/select2-js.min.js"></script>
-	<!-- Video Popup JS -->
-	<script src="/static/js/video-popup.min.js"></script>
-	<!-- Swiper SLider JS -->
-	<script src="/static/js/swiper-slider.min.js"></script>
-	<!-- Flex SLider JS -->
-	<script src="/static/js/flex-slider.html"></script>
-	<!-- Waypoints JS -->
-	<script src="/static/js/waypoints.min.js"></script>
-	<!-- Counterup JS -->
-	<script src="/static/js/jquery.counterup.min.js"></script>
-	<!-- Easing JS -->
-	<script src="/static/js/easing.min.html"></script>
-	<!-- Main JS -->
-	<script src="/static/js/active.js"></script>
-
-
-
-	<script>
-		document.getElementById("trackingForm").addEventListener("submit", function (e) {
-			e.preventDefault(); // stop normal form submit
-			const trackingId = document.getElementById("trackingInput").value.trim();
-			if (trackingId) {
-				window.location.href = `/tracking/${trackingId}`;
-			}
-		});
-	</script>
-
-	<script>
-		/* Testimonial Slider */
-		var swiper = new Swiper(".inflanar-slider-testimonial", {
-			autoplay: {
-				delay: 3333500,
-			},
-			mousewheel: true,
-			keyboard: true,
-			loop: true,
-			grabCursor: true,
-			spaceBetween: 0,
-			centeredSlides: false,
-			pagination: {
-				el: '.swiper-pagination__testimonial',
-				type: 'bullets',
-				clickable: true,
-			},
-			breakpoints: {
-				320: {
-					slidesPerView: "1",
-				},
-				428: {
-					slidesPerView: "1",
-				},
-				768: {
-					slidesPerView: "1",
-				},
-				1024: {
-					slidesPerView: "2",
-				},
-			},
-		});
-
-	</script>
+        // --- FLOATING MENU SCRIPT ---
+        const fabButton = document.getElementById('fab-menu-button');
+        const fabMenuItemsContainer = document.getElementById('fab-menu-items');
+        if (fabButton) {
+            fabButton.addEventListener('click', () => {
+                const isActive = fabButton.classList.toggle('active');
+                if (isActive) {
+                    fabMenuItemsContainer.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                } else {
+                    fabMenuItemsContainer.classList.add('opacity-0', 'scale-90');
+                    setTimeout(() => {
+                        fabMenuItemsContainer.classList.add('pointer-events-none');
+                    }, 300);
+                }
+            });
+        }
+    </script>
 </body>
-
-<!-- Mirrored from quomodothemes.website/html/inflanar/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Nov 2024 23:26:02 GMT -->
 
 </html>
