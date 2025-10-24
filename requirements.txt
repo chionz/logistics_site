@@ -36,7 +36,7 @@ fastapi==0.111.1
 fastapi-cli==0.0.4
 fastapi-mail==1.4.1
 fastapi-pagination==0.13.1
-fastsms==0.1.0
+#fastsms==0.1.0
 filelock==3.15.4
 flake8==7.1.0
 frozenlist==1.4.1
@@ -60,7 +60,6 @@ MarkupSafe==2.1.5
 mccabe==0.7.0
 mdurl==0.1.2
 more-itertools==10.3.0
-moviepy==2.1.2
 multidict==6.0.5
 mypy-extensions==1.0.0
 nodeenv==1.9.1
