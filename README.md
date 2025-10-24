@@ -10,11 +10,12 @@ Logistics Health App
 
 1. Create a virtual environment.
  ```sh
-    python3.11 -m venv .venv
+    python3.11 -m venv venv
  ```
 2. Activate virtual environment.
 ```sh
     source /path/to/venv/bin/activate`
+    for windows "venv\scripts\activate"
 ```
 3. Install project dependencies `pip install -r requirements.txt`
 
