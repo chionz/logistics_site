@@ -1,5 +1,4 @@
 from api.v1.models import *
-from api.v1.models.associations import Base
 from api.v1.services.user import user_service
 from api.db.database import create_database, get_db
 
